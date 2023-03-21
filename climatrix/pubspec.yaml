@@ -1,4 +1,4 @@
-name: climatrix
+name: practiceblogapp
 description: A new Flutter project.
 publish_to: 'none'
 version: 0.1.0
@@ -10,8 +10,11 @@ dependencies:
   cloud_firestore: ^4.4.4
   firebase_auth: ^4.2.10
   firebase_core: ^2.7.1
+  firebase_storage: ^11.0.15
   flutter:
     sdk: flutter
+  image_picker: ^0.8.7
+  random_string: ^2.3.1
 
 dev_dependencies:
   flutter_test:

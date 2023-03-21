@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.climatrix">
+    package="com.example.practiceblogapp">
    <application
-        android:label="climatrix"
+        android:label="practiceblogapp"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
