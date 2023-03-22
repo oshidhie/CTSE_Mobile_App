@@ -303,9 +303,7 @@ class _BlogsState extends State<Blogs> {
                           textAlign: TextAlign.center,
                         ),
                         subtitle: Text(
-                          documentSnapshot['content']
-                              .toString()
-                              .substring(0, 100),
+                          documentSnapshot['content'],
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),
                         ),

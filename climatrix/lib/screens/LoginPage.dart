@@ -85,6 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                         height: 16,
                       ),
                       TextFormField(
+                        obscureText: true,
                         decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.password,

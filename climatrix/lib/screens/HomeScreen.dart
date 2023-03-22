@@ -13,8 +13,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ignore: avoid_unnecessary_containers
-      body: Container(
+        // ignore: avoid_unnecessary_containers
+        body: Align(
+      alignment: Alignment.center,
+      child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -137,6 +139,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-    );
+    ));
   }
 }
