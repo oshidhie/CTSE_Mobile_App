@@ -13,13 +13,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Grid"),
-      ),
       // ignore: avoid_unnecessary_containers
       body: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: <Color>[Colors.lightGreen, Colors.cyan])),
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(20.0),
           child: GridView(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 87, 197, 209),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 87, 209, 207),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -86,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 87, 197, 209),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -113,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 87, 209, 207),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
