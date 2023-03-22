@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:climatrix/screens/LoginPage.dart';
+import 'package:practiceblogapp/screens/LoginPage.dart';
 
 class Blogs extends StatefulWidget {
   final User? user;
@@ -303,9 +303,8 @@ class _BlogsState extends State<Blogs> {
                           textAlign: TextAlign.center,
                         ),
                         subtitle: Text(
-                          documentSnapshot['content']
-                              .toString()
-                              .substring(0, 100),
+                          documentSnapshot['content'],
+                              
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),
                         ),

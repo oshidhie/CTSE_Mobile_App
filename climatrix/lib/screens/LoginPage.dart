@@ -3,8 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:climatrix/screens/Blogs.dart';
-import 'package:climatrix/screens/Register.dart';
+import 'package:practiceblogapp/screens/Register.dart';
+import 'package:practiceblogapp/screens/createBlog.dart';
+import 'Blogs.dart';
+import 'HomeScreen.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -123,7 +125,9 @@ class _LoginPageState extends State<LoginPage> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      Blogs(currentUser.user)
+                                                      
+                                                      // Blogs(currentUser.user)
+                                                      HomePage(currentUser.user)
                                                   // others(currentUser.user)
                                                   )))
                                       .catchError((err) => print(err)))

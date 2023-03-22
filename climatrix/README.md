@@ -1,3 +1,3 @@
-# climatrix
+# practiceblogapp
 
 A new Flutter project.
