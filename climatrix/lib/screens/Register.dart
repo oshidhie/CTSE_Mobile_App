@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:climatrix/screens/Blogs.dart';
-import 'package:climatrix/screens/LoginPage.dart';
+
+import 'Blogs.dart';
+import 'LoginPage.dart';
+
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

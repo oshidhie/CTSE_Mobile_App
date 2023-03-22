@@ -11,12 +11,13 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   if (kIsWeb) {
     await Firebase.initializeApp(
-      options: const FirebaseOptions(apiKey: "AIzaSyAVwXNCRs1vrKBvUgHURfSPMaScnq5E9gk",
-  authDomain: "todolist-c499c.firebaseapp.com",
-  projectId: "todolist-c499c",
-  storageBucket: "todolist-c499c.appspot.com",
-  messagingSenderId: "277196802098",
-  appId: "1:277196802098:web:0a3c1f90052b45a14f542b"));
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyAVwXNCRs1vrKBvUgHURfSPMaScnq5E9gk",
+        authDomain: "todolist-c499c.firebaseapp.com",
+        projectId: "todolist-c499c",
+        storageBucket: "todolist-c499c.appspot.com",
+        messagingSenderId: "277196802098",
+        appId: "1:277196802098:web:0a3c1f90052b45a14f542b"));
     runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(brightness: Brightness.dark),
