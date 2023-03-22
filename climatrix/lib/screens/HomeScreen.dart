@@ -1,35 +1,26 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-import 'Blogs.dart';
-
 class HomePage extends StatefulWidget {
-  final User? user;
-  const HomePage(this.user, {super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  navigateBlogs() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => Blogs(widget.user)));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Grid"),
-      ),
       // ignore: avoid_unnecessary_containers
       body: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: <Color>[Colors.lightGreen, Colors.cyan])),
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(20.0),
           child: GridView(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
@@ -42,7 +33,7 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 87, 197, 209),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -69,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 87, 209, 207),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -89,13 +80,14 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               InkWell(
-                onTap: () {
-                  navigateBlogs();
-                },
+                // onTap: () {
+                //   Navigator.push(context,
+                //       MaterialPageRoute(builder: (context) => HomePage()));
+                // },
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 87, 197, 209),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -122,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 87, 209, 207),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
