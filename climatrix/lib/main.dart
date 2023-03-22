@@ -1,3 +1,4 @@
+import 'package:climatrix/screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -16,20 +17,23 @@ void main() async {
     runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(brightness: Brightness.dark),
-      home: const MyApp(),
+      home: const HomePage(),
     ));
+
+    //   home: const MyApp(),
+    // ));
   }
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'PlanetPulse',
-      home: RegisterPage(),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       title: 'PlanetPulse',
+//       home: RegisterPage(),
+//     );
+//   }
+// }
