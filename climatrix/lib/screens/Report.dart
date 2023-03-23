@@ -61,21 +61,6 @@ class _ReportsState extends State<Reports> {
 
   int _selectedIndex = 2;
 
-  // List<Widget> _widgetOptions = <Widget>[
-  //  blognavigation(),
-  //   Text(
-  //     'Index 1: Business',
-
-  //   ),
-  //   Text(
-  //     'Index 2: School',
-
-  //   ),
-  //   Text(
-  //     'Index 3: Settings',
-
-  //   ),
-  // ];
   homenavigation() {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => HomePage(widget.user)));
@@ -102,21 +87,21 @@ class _ReportsState extends State<Reports> {
                     content: Column(
                       children: <Widget>[
                         Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               gradient: LinearGradient(colors: <Color>[
                             Colors.lightGreen,
                             Colors.cyan
                           ])),
                         ),
                         Container(
-                          padding: EdgeInsets.all(16),
-                          child: Text(
+                          padding:  const EdgeInsets.all(16),
+                          child: const Text(
                             "New report",
                             style: TextStyle(fontSize: 27, color: Colors.black),
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(16),
                           child: TextField(
                             decoration: InputDecoration(
                                 labelText: 'Author name',

@@ -1,7 +1,7 @@
+import 'package:climatrix/screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:climatrix/screens/Blogs.dart';
 import 'package:climatrix/screens/LoginPage.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -170,7 +170,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      Blogs(currentUser.user)),
+                                                      HomePage(currentUser.user)),
                                               (_) => false),
                                           firstNameInputController.clear(),
                                           lastNameInputController.clear(),
