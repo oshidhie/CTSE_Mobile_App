@@ -96,7 +96,7 @@ class _ReportsState extends State<Reports> {
                         Container(
                           padding:  const EdgeInsets.all(16),
                           child: const Text(
-                            "New report",
+                            "New Report",
                             style: TextStyle(fontSize: 27, color: Colors.black),
                           ),
                         ),
@@ -104,7 +104,7 @@ class _ReportsState extends State<Reports> {
                           padding: const EdgeInsets.all(16),
                           child: TextField(
                             decoration: InputDecoration(
-                                labelText: 'Author name',
+                                labelText: 'Author',
                                 border: OutlineInputBorder(),
                                 prefixIcon: Icon(
                                   Icons.edit,
@@ -119,7 +119,7 @@ class _ReportsState extends State<Reports> {
                           padding: EdgeInsets.all(16),
                           child: TextField(
                             decoration: InputDecoration(
-                                labelText: 'Enter your report title',
+                                labelText: 'Title',
                                 border: OutlineInputBorder(),
                                 prefixIcon: Icon(
                                   Icons.title,
@@ -134,12 +134,9 @@ class _ReportsState extends State<Reports> {
                           padding: EdgeInsets.all(16),
                           child: TextField(
                             decoration: InputDecoration(
-                                labelText: 'Type',
+                                labelText: 'Content',
                                 border: OutlineInputBorder(),
-                                prefixIcon: Icon(
-                                  Icons.edit_document,
-                                  color: Colors.black,
-                                )),
+                               ),
                             maxLines: 15,
                             onChanged: ((value) {
                               content = value;
@@ -451,10 +448,7 @@ class _ReportsState extends State<Reports> {
                                           decoration: InputDecoration(
                                               labelText: 'Type',
                                               border: OutlineInputBorder(),
-                                              prefixIcon: Icon(
-                                                Icons.edit,
-                                                color: Colors.black,
-                                              )),
+                                              ),
                                           maxLines: 15,
                                           onChanged: ((value) {
                                             content = value;
@@ -511,7 +505,7 @@ class _ReportsState extends State<Reports> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
-            label: 'Add report',
+            label: 'Add Report',
             //  backgroundColor: Colors.grey,
           ),
         ],
