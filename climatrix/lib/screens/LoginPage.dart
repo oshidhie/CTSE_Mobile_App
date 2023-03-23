@@ -1,9 +1,10 @@
-import 'dart:ui';
 
+// ignore_for_file: file_names
+
+import 'package:climatrix/screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:climatrix/screens/Blogs.dart';
 import 'package:climatrix/screens/Register.dart';
 
 class LoginPage extends StatefulWidget {
@@ -48,6 +49,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text("Login"),
           backgroundColor: Colors.black,
           leading: Icon(Icons.login),
@@ -124,7 +126,8 @@ class _LoginPageState extends State<LoginPage> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      Blogs(currentUser.user)
+                                                     // Blogs(currentUser.user)
+                                                        HomePage(currentUser.user)
                                                   // others(currentUser.user)
                                                   )))
                                       .catchError((err) => print(err)))

@@ -52,6 +52,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text("Register"),
           leading: Icon(Icons.app_registration_rounded),
           backgroundColor: Colors.black,
