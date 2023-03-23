@@ -6,54 +6,54 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class Blogs extends StatefulWidget {
+class Issues extends StatefulWidget {
   final User? user;
-  const Blogs(this.user, {super.key});
+  const Issues(this.user, {super.key});
 
   @override
-  State<Blogs> createState() => _BlogsState();
+  State<Issues> createState() => _IssuesState();
 }
 
-class _BlogsState extends State<Blogs> {
+class _IssuesState extends State<Issues> {
   var txt = TextEditingController();
   String authorName = "";
-  String blogTitle = "";
+  String issueTitle = "";
   String content = "";
 
   static User? get user => null;
 
   //Function to add tasks to the list
-  createBlogs() {
+  createIssues() {
     CollectionReference<Map<String, dynamic>> documentReference =
         FirebaseFirestore.instance
             .collection('users')
             .doc(widget.user!.uid)
-            .collection('Blogs');
-    Map<String, String> Blogs = {
+            .collection('Issues');
+    Map<String, String> Issues = {
       'authorName': authorName,
-      "blogTitle": blogTitle,
+      "issueTitle": issueTitle,
       'content': content
     };
-    documentReference.add(Blogs).whenComplete(() => print("input created"));
+    documentReference.add(Issues).whenComplete(() => print("input created"));
   }
 
   //function to delete items from the todo list
-  deletBlogs(item) {
+  deletIssues(item) {
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('users')
         .doc(widget.user!.uid)
-        .collection('Blogs')
+        .collection('Issues')
         .doc(item);
 
-    documentReference.delete().whenComplete(() => print("blog deleted"));
+    documentReference.delete().whenComplete(() => print("issue deleted"));
   }
 
   //function to update the status of a task by clicking on the check box
-  updateBlogs(itemId, content) {
+  updateIssues(itemId, content) {
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('users')
         .doc(widget.user!.uid)
-        .collection('Blogs')
+        .collection('Issues')
         .doc(itemId);
     documentReference
         .update({'content': content}).whenComplete(() => print("Updated"));
@@ -111,7 +111,7 @@ class _BlogsState extends State<Blogs> {
                         Container(
                           padding: EdgeInsets.all(16),
                           child: Text(
-                            "New blog",
+                            "New issue",
                             style: TextStyle(fontSize: 27, color: Colors.black),
                           ),
                         ),
@@ -134,14 +134,14 @@ class _BlogsState extends State<Blogs> {
                           padding: EdgeInsets.all(16),
                           child: TextField(
                             decoration: InputDecoration(
-                                labelText: 'Enter your blog title',
+                                labelText: 'Enter your issue title',
                                 border: OutlineInputBorder(),
                                 prefixIcon: Icon(
                                   Icons.title,
                                   color: Colors.black,
                                 )),
                             onChanged: ((value) {
-                              blogTitle = value;
+                              issueTitle = value;
                             }),
                           ),
                         ),
@@ -186,7 +186,7 @@ class _BlogsState extends State<Blogs> {
                                   onPressed: () {
                                     setState(() {
                                       //add tasks
-                                      createBlogs();
+                                      createIssues();
                                     });
                                     //pop out dialog box after adding a task
                                     Navigator.of(context).pop();
@@ -222,7 +222,7 @@ class _BlogsState extends State<Blogs> {
           Icons.dashboard_customize,
         ),
         centerTitle: true,
-        title: const Text('My Blogs'),
+        title: const Text('My Issues'),
         actions: [
           IconButton(
               icon: Icon(Icons.logout),
@@ -237,7 +237,7 @@ class _BlogsState extends State<Blogs> {
           stream: FirebaseFirestore.instance
               .collection('users')
               .doc(widget.user!.uid)
-              .collection('Blogs')
+              .collection('Issues')
               .snapshots(),
           builder: (context, snapshot) {
             return ListView.builder(
@@ -268,7 +268,7 @@ class _BlogsState extends State<Blogs> {
                                                   alignment: Alignment.topLeft,
                                                   child: Text(
                                                     documentSnapshot[
-                                                        'blogTitle'],
+                                                        'issueTitle'],
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 30,
@@ -322,7 +322,7 @@ class _BlogsState extends State<Blogs> {
 
                                       // child: Column(children: [
                                       //    Align(alignment: Alignment.topLeft,child:Column(children: [
-                                      //     Text(documentSnapshot['blogTitle'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),),
+                                      //     Text(documentSnapshot['issueTitle'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),),
                                       //     Text(documentSnapshot['authorName'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),),
                                       //     Expanded(child: Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))
 
@@ -332,7 +332,7 @@ class _BlogsState extends State<Blogs> {
                                       // ],)
                                     ),
 
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['blogTitle'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),))),
+                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['issueTitle'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),))),
                                     // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['authorName'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),))),
                                     // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))),
                                   ]),
@@ -343,7 +343,7 @@ class _BlogsState extends State<Blogs> {
 
                         //list tasks with their title and statusr
                         title: Text(
-                          documentSnapshot['blogTitle'],
+                          documentSnapshot['issueTitle'],
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -367,7 +367,7 @@ class _BlogsState extends State<Blogs> {
                           onPressed: () {
                             // setState(() {
                             //   //delete an item
-                            //   deletBlogs(documentSnapshot.reference.id);
+                            //   deletIssues(documentSnapshot.reference.id);
                             // });
                             showDialog(
                                 context: context,
@@ -406,7 +406,7 @@ class _BlogsState extends State<Blogs> {
                                                       Alignment.bottomCenter),
                                               onPressed: () {
                                                 setState(() {
-                                                  deletBlogs(documentSnapshot
+                                                  deletIssues(documentSnapshot
                                                       .reference.id);
                                                 });
                                                 Navigator.of(context).pop();
@@ -449,7 +449,7 @@ class _BlogsState extends State<Blogs> {
                                         child: TextField(
                                           controller: TextEditingController(
                                               text: documentSnapshot[
-                                                  'blogTitle']),
+                                                  'issueTitle']),
                                           autofocus: true,
                                           decoration: InputDecoration(
                                               hintText: 'Title',
@@ -482,7 +482,7 @@ class _BlogsState extends State<Blogs> {
                                         child: ElevatedButton(
                                           onPressed: () {
                                             setState(() {
-                                              updateBlogs(
+                                              updateIssues(
                                                   documentSnapshot.reference.id,
                                                   content);
                                             });
@@ -516,17 +516,17 @@ class _BlogsState extends State<Blogs> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
-            label: 'All Blogs',
+            label: 'All Issues',
             // backgroundColor: Colors.grey,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'My Blogs',
+            label: 'My Issues',
             // backgroundColor: Colors.grey,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
-            label: 'Add blog',
+            label: 'Add issue',
             //  backgroundColor: Colors.grey,
           ),
         ],

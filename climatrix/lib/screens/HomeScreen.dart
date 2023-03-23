@@ -1,9 +1,18 @@
+import 'package:climatrix/screens/Blogs.dart';
+import 'package:climatrix/screens/Issues.dart';
+import 'package:climatrix/screens/Projects.dart';
+import 'package:climatrix/screens/Report.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
+import 'LoginPage.dart';
+
+
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final User? user;
+  const HomePage(this.user, {super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -12,7 +21,39 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+
+    blognavigation(){
+       Navigator.push(context,
+       MaterialPageRoute(builder: (context) => Blogs(widget.user)));
+    }
+    projectnavigation(){
+       Navigator.push(context,
+       MaterialPageRoute(builder: (context) => Projects(widget.user)));
+    }
+    issuesnavigation(){
+       Navigator.push(context,
+       MaterialPageRoute(builder: (context) => Issues(widget.user)));
+    }
+    reportnavigation(){
+       Navigator.push(context,
+       MaterialPageRoute(builder: (context) => Reports(widget.user)));
+    }
+
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        leading: Icon(
+          Icons.home,
+        ),
+        centerTitle: true,
+        title: const Text('Home'),
+        actions: [
+          IconButton(icon: Icon(Icons.logout), onPressed: () {
+            Navigator.pushReplacement(context,
+       MaterialPageRoute(builder: (context) => LoginPage()));
+          }),
+        ],
+      ),
         // ignore: avoid_unnecessary_containers
         body: Align(
       alignment: Alignment.center,
@@ -28,10 +69,9 @@ class _HomePageState extends State<HomePage> {
                 crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
             children: [
               InkWell(
-                // onTap: () {
-                //   Navigator.push(context,
-                //       MaterialPageRoute(builder: (context) => HomePage()));
-                // },
+                onTap: () {
+                  issuesnavigation();
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -55,10 +95,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               InkWell(
-                // onTap: () {
-                //   Navigator.push(context,
-                //       MaterialPageRoute(builder: (context) => HomePage()));
-                // },
+                onTap: () {
+                  projectnavigation();
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -74,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                         width: 80,
                       ),
                       const Text(
-                        "Organization",
+                        "Projects",
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       )
                     ],
@@ -82,10 +121,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               InkWell(
-                // onTap: () {
-                //   Navigator.push(context,
-                //       MaterialPageRoute(builder: (context) => HomePage()));
-                // },
+                onTap: () {
+                  blognavigation();
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -109,10 +147,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               InkWell(
-                // onTap: () {
-                //   Navigator.push(context,
-                //       MaterialPageRoute(builder: (context) => HomePage()));
-                // },
+                onTap: () {
+                  reportnavigation();
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
