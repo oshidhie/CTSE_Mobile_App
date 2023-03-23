@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -14,6 +15,7 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
+  <link rel="stylesheet" type="text/css" href="style.css">
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
@@ -40,6 +42,9 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+  <!-- <img src="img/background.jpg" class="back"/> -->
+  <img src="img/logo.png" class="climatrix"/>
+  <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_jggbnfb8.json" background="transparent"  speed="0.5"  class="center" loop  autoplay></lottie-player>
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
