@@ -17,9 +17,7 @@ class AllReports extends StatefulWidget {
 
 class _AllReportsState extends State<AllReports> {
   var txt = TextEditingController();
-  String vehicleNo = "";
-  String location = "";
-  String content = "";
+
 
   static User? get user => null;
 
