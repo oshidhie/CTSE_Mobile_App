@@ -91,111 +91,108 @@ class _ProjectsState extends State<Projects> {
   }
   addnavigation() {
     showDialog(
-                context: context,
-                builder: ((context) {
-                  return AlertDialog(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    shadowColor: Colors.purple,
+        context: context,
+        builder: ((context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            shadowColor: Colors.purple,
 
-                    content: Column(
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: <Color>[
-                            Colors.lightGreen,
-                            Colors.cyan
-                          ])),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          child: Text(
-                            "New project",
-                            style: TextStyle(fontSize: 27, color: Colors.black),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          child: TextField(
-                            decoration: InputDecoration(
-                                labelText: 'Author name',
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(
-                                  Icons.edit,
-                                  color: Colors.black,
-                                )),
-                            onChanged: ((value) {
-                              authorName = value;
-                            }),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          child: TextField(
-                            decoration: InputDecoration(
-                                labelText: 'Enter your project title',
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(
-                                  Icons.title,
-                                  color: Colors.black,
-                                )),
-                            onChanged: ((value) {
-                              projectTitle = value;
-                            }),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          child: TextField(
-                            decoration: InputDecoration(
-                                labelText: 'Type',
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(
-                                  Icons.edit_document,
-                                  color: Colors.black,
-                                )),
-                            maxLines: 15,
-                            onChanged: ((value) {
-                              content = value;
-                            }),
-                          ),
-                        ),
-                        // Container(
-                        //   child: TextField(onChanged: (value) {
-                        //     cstatus=value;
-                        //   },
-                        //     decoration: InputDecoration(labelText: 'Add ToDo'),),
-                        // )
-                      ],
-                    ),
-                    // content: TextField(onChanged: (value) {
-                    //   input=value;
-                    // },),
-                    // submit button
-                    actions: [
-                      Align(
-                          alignment: Alignment.topCenter,
-                          child: SizedBox(
-                              width: 200,
-                              height: 50,
-                              child: ElevatedButton(
-                                  style: const ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll(
-                                          Colors.lightGreen)),
-                                  onPressed: () {
-                                    setState(() {
-                                      //add tasks
-                                      createProjects();
-                                    });
-                                    //pop out dialog box after adding a task
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: const Text("Add"))))
-                    ],
-                  );
-                }));
-          
+            content: Column(
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          colors: <Color>[Colors.lightGreen, Colors.cyan])),
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  child: Text(
+                    "New project",
+                    style: TextStyle(fontSize: 27, color: Colors.black),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        labelText: 'Chairperson',
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(
+                          Icons.edit,
+                          color: Colors.black,
+                        )),
+                    onChanged: ((value) {
+                      authorName = value;
+                    }),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        labelText: 'Enter your project title',
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(
+                          Icons.title,
+                          color: Colors.black,
+                        )),
+                    onChanged: ((value) {
+                      projectTitle = value;
+                    }),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        labelText: 'Description',
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(
+                          Icons.edit_document,
+                          color: Colors.black,
+                        )),
+                    maxLines: 13,
+                    onChanged: ((value) {
+                      content = value;
+                    }),
+                  ),
+                ),
+                // Container(
+                //   child: TextField(onChanged: (value) {
+                //     cstatus=value;
+                //   },
+                //     decoration: InputDecoration(labelText: 'Add ToDo'),),
+                // )
+              ],
+            ),
+            // content: TextField(onChanged: (value) {
+            //   input=value;
+            // },),
+            // submit button
+            actions: [
+              Align(
+                  alignment: Alignment.topCenter,
+                  child: SizedBox(
+                      width: 200,
+                      height: 50,
+                      child: ElevatedButton(
+                          style: const ButtonStyle(
+                              backgroundColor:
+                                  MaterialStatePropertyAll(Colors.lightGreen)),
+                          onPressed: () {
+                            setState(() {
+                              //add tasks
+                              createProjects();
+                            });
+                            //pop out dialog box after adding a task
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text("Add"))))
+            ],
+          );
+        }));
   }
 
   void _onItemTapped(int index) {
@@ -232,7 +229,6 @@ class _ProjectsState extends State<Projects> {
               }),
         ],
       ),
-
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('users')
