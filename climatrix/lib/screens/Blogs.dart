@@ -353,7 +353,7 @@ class _BlogsState extends State<Blogs> {
                         ),
                         subtitle: Text(
                           documentSnapshot['content'],
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.left,
                           style: TextStyle(color: Colors.white),
                         ),
 
