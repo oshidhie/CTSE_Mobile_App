@@ -195,9 +195,6 @@ class _AllIssuesState extends State<AllIssues> {
                                                   border: InputBorder.none),
                                               maxLines: 5,
                                               readOnly: true,
-                                              onChanged: ((value) {
-                                                content = value;
-                                              }),
                                             ),
                                           ),
                                         ],
