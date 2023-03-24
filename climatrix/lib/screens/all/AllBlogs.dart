@@ -181,7 +181,7 @@ class _AllBlogsState extends State<AllBlogs> {
                         },
                         contentPadding: EdgeInsets.all(16),
 
-                        //list tasks with their title and statusr
+                  
                         title: Text(
                           documentSnapshot['blogTitle'],
                           style: TextStyle(

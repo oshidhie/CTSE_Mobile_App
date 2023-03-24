@@ -6,7 +6,7 @@ import 'package:climatrix/screens/all/AllBlogs.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+//stateful widget to manage blogs
 class Blogs extends StatefulWidget {
   final User? user;
   const Blogs(this.user, {super.key});
@@ -23,7 +23,7 @@ class _BlogsState extends State<Blogs> {
 
   static User? get user => null;
 
-  //Function to add tasks to the list
+  //create blogs
   createBlogs() {
     CollectionReference<Map<String, dynamic>> documentReference =
         FirebaseFirestore.instance
@@ -38,7 +38,7 @@ class _BlogsState extends State<Blogs> {
     documentReference.add(Blogs).whenComplete(() => print("input created"));
   }
 
-  //function to delete items from the todo list
+//function to delete blogs  
   deletBlogs(item) {
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('users')
@@ -48,8 +48,7 @@ class _BlogsState extends State<Blogs> {
 
     documentReference.delete().whenComplete(() => print("blog deleted"));
   }
-
-  //function to update the status of a task by clicking on the check box
+//function to update blogs
   updateBlogs(itemId, content) {
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('users')
@@ -156,7 +155,7 @@ class _BlogsState extends State<Blogs> {
                                   Icons.edit_document,
                                   color: Colors.black,
                                 )),
-                            maxLines: 15,
+                            maxLines: 9,
                             onChanged: ((value) {
                               content = value;
                             }),
@@ -186,10 +185,10 @@ class _BlogsState extends State<Blogs> {
                                           Colors.lightGreen)),
                                   onPressed: () {
                                     setState(() {
-                                      //add tasks
+                                      
                                       createBlogs();
                                     });
-                                    //pop out dialog box after adding a task
+                                    
                                     Navigator.of(context).pop();
                                   },
                                   child: const Text("Add"))))
@@ -267,9 +266,11 @@ class _BlogsState extends State<Blogs> {
                                           Container(
                                               child: Align(
                                                   alignment: Alignment.topLeft,
-                                                  child: Text(
-                                                    documentSnapshot[
-                                                        'blogTitle'],
+                                                  child: TextField(controller: TextEditingController(text: documentSnapshot[
+                                                        'blogTitle'],),
+                                                        decoration: InputDecoration(border: InputBorder.none,labelText: 'Title'),
+                                                        readOnly: true,
+                                                    
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 30,
@@ -279,9 +280,11 @@ class _BlogsState extends State<Blogs> {
                                           Container(
                                               child: Align(
                                                   alignment: Alignment.topLeft,
-                                                  child: Text(
-                                                    documentSnapshot[
+                                                  child: TextField(controller: TextEditingController(
+                                                    text: documentSnapshot[
                                                         'authorName'],
+                                                  ),decoration: InputDecoration(border: InputBorder.none,labelText: 'Author'),readOnly: true,
+                                                    
                                                     style: TextStyle(
                                                         color: Color.fromARGB(
                                                             255, 83, 76, 76),
@@ -291,19 +294,19 @@ class _BlogsState extends State<Blogs> {
                                                   ))),
                                           Expanded(
                                               child: Container(
-                                                  decoration: BoxDecoration(
-                                                    gradient: LinearGradient(
-                                                        colors: [
-                                                          Colors.lightGreen,
-                                                          Colors.cyan
-                                                        ]),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                  ),
+                                                  // decoration: BoxDecoration(
+                                                  //   gradient: LinearGradient(
+                                                  //       colors: [
+                                                  //         Colors.lightGreen,
+                                                  //         Colors.cyan
+                                                  //       ]),
+                                                  //   borderRadius:
+                                                  //       BorderRadius.circular(
+                                                  //           8),
+                                                  // ),
                                                   padding: EdgeInsets.all(20),
                                                   alignment: Alignment.topLeft,
-                                                  height: 600,
+                                                  height: 500,
                                                   child: TextField(
                                                     controller:
                                                         TextEditingController(
@@ -313,7 +316,7 @@ class _BlogsState extends State<Blogs> {
                                                     decoration: InputDecoration(
                                                         border:
                                                             InputBorder.none),
-                                                    maxLines: 50,
+                                                    maxLines: 5,
                                                     readOnly: true,
                                                     style: TextStyle(
                                                         color: Colors.black),
@@ -342,7 +345,7 @@ class _BlogsState extends State<Blogs> {
                         },
                         contentPadding: EdgeInsets.all(16),
 
-                        //list tasks with their title and statusr
+                        
                         title: Text(
                           documentSnapshot['blogTitle'],
                           style: TextStyle(
@@ -350,12 +353,12 @@ class _BlogsState extends State<Blogs> {
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.left,
                         ),
                         subtitle: Text(
-                          documentSnapshot['content'],
-                          textAlign: TextAlign.left,
-                          style: TextStyle(color: Colors.white),
+                          documentSnapshot['authorName'],
+                          textAlign: TextAlign.right,
+                          style: TextStyle(color: Colors.grey),
                         ),
 
                         tileColor: Colors.black,
@@ -379,11 +382,14 @@ class _BlogsState extends State<Blogs> {
                                     title: const Text(
                                       'Delete confirmation',
                                       style: TextStyle(
-                                        fontWeight: FontWeight.w100,
+                                        fontWeight: FontWeight.bold,
+                                        
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
-                                    content: Column(children: [
+                                    content: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
                                       Container(
                                         child: const Text(
                                           "Are you sure you want to delete this post?",
@@ -398,13 +404,13 @@ class _BlogsState extends State<Blogs> {
                                           width: 100,
                                           child: Container(
                                             child: ElevatedButton(
-                                              child: const Text('sure'),
+                                              child: const Text('Yes'),
                                               style: ButtonStyle(
                                                   backgroundColor:
                                                       MaterialStatePropertyAll(
-                                                          Colors.black),
+                                                          Color.fromARGB(255, 67, 175, 71)),
                                                   alignment:
-                                                      Alignment.bottomCenter),
+                                                      Alignment.center),
                                               onPressed: () {
                                                 setState(() {
                                                   deletBlogs(documentSnapshot
@@ -478,8 +484,9 @@ class _BlogsState extends State<Blogs> {
                                         ),
                                       ),
                                     ]),
-                                    actions: [
-                                      SizedBox(
+                                    actions: [Align(
+                                      alignment: Alignment.topCenter,
+                                      child:  SizedBox(
                                         child: ElevatedButton(
                                           onPressed: () {
                                             setState(() {
@@ -493,10 +500,13 @@ class _BlogsState extends State<Blogs> {
                                           style: ButtonStyle(
                                               backgroundColor:
                                                   MaterialStatePropertyAll(
-                                                      Colors.black),
+                                                     Color.fromARGB(
+                                                              255, 49, 112, 7)),
                                               alignment: Alignment.center),
                                         ),
-                                      )
+                                      ),
+                                    )
+                                     
                                     ],
                                   );
                                 });
