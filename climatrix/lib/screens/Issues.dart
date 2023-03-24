@@ -117,12 +117,9 @@ class _IssuesState extends State<Issues> {
                   padding: const EdgeInsets.all(16),
                   child: TextField(
                     decoration: const InputDecoration(
-                        labelText: 'Issue name',
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(
-                          Icons.edit,
-                          color: Colors.black,
-                        )),
+                      labelText: 'Issue name',
+                      border: OutlineInputBorder(),
+                    ),
                     onChanged: ((value) {
                       issueName = value;
                     }),
@@ -132,12 +129,9 @@ class _IssuesState extends State<Issues> {
                   padding: const EdgeInsets.all(16),
                   child: TextField(
                     decoration: const InputDecoration(
-                        labelText: 'Drought, Flood',
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(
-                          Icons.title,
-                          color: Colors.black,
-                        )),
+                      labelText: 'Drought, Flood',
+                      border: OutlineInputBorder(),
+                    ),
                     onChanged: ((value) {
                       issueType = value;
                     }),
@@ -147,12 +141,9 @@ class _IssuesState extends State<Issues> {
                   padding: const EdgeInsets.all(16),
                   child: TextField(
                     decoration: const InputDecoration(
-                        labelText: 'Solution',
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(
-                          Icons.edit_document,
-                          color: Colors.black,
-                        )),
+                      labelText: 'Solution',
+                      border: OutlineInputBorder(),
+                    ),
                     maxLines: 10,
                     onChanged: ((value) {
                       content = value;
@@ -385,7 +376,7 @@ class _IssuesState extends State<Issues> {
                         },
                         contentPadding: EdgeInsets.all(16),
 
-                        //list tasks with their title and statusr
+                        //list tasks with their title and status
                         title: Text(
                           documentSnapshot['issueType'],
                           style: TextStyle(
@@ -576,23 +567,26 @@ class _IssuesState extends State<Issues> {
                                       ),
                                     ]),
                                     actions: [
-                                      SizedBox(
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              updateIssues(
-                                                  documentSnapshot.reference.id,
-                                                  content);
-                                            });
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: const Text("Update"),
-                                          style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStatePropertyAll(
-                                                      Color.fromARGB(
-                                                          255, 102, 255, 0)),
-                                              alignment: Alignment.center),
+                                      Align(
+                                        alignment: Alignment.topCenter,
+                                        child: SizedBox(
+                                          child: ElevatedButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  updateIssues(
+                                                      documentSnapshot
+                                                          .reference.id,
+                                                      content);
+                                                });
+                                                Navigator.of(context).pop();
+                                              },
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStatePropertyAll(
+                                                          Color.fromARGB(
+                                                              255, 49, 112, 7)),
+                                                  alignment: Alignment.center),
+                                              child: const Text("Update")),
                                         ),
                                       )
                                     ],
