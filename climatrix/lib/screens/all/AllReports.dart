@@ -18,9 +18,7 @@ class AllReports extends StatefulWidget {
 class _AllReportsState extends State<AllReports> {
   var txt = TextEditingController();
 
-
   static User? get user => null;
-
 
   int _selectedIndex = 1;
 
@@ -34,11 +32,9 @@ class _AllReportsState extends State<AllReports> {
     //  MaterialPageRoute(builder: (context) => HomePage(widget.user)));
   }
   mynavigation() {
-     Navigator.push(context,
-     MaterialPageRoute(builder: (context) => Reports(widget.user)));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Reports(widget.user)));
   }
-           
-    
 
   void _onItemTapped(int index) {
     setState(() {
@@ -49,7 +45,7 @@ class _AllReportsState extends State<AllReports> {
         allnavigation();
       } else if (index == 2) {
         mynavigation();
-      }  
+      }
     });
   }
 
@@ -74,9 +70,7 @@ class _AllReportsState extends State<AllReports> {
       ),
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
-              .collection('users')
-              .doc(widget.user!.uid)
-              .collection('AllReports')
+              .collectionGroup('AllReports')
               .snapshots(),
           builder: (context, snapshot) {
             return ListView.builder(
@@ -259,9 +253,7 @@ class _AllReportsState extends State<AllReports> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16)),
 
-                        
                         //check box to update the status
-                        
                       ));
                 }));
           }),
