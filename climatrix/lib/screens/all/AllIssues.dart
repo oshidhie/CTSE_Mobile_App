@@ -21,7 +21,6 @@ class _AllIssuesState extends State<AllIssues> {
  
   static User? get user => null;
 
-
   int _selectedIndex = 1;
 
   homenavigation() {
@@ -34,11 +33,9 @@ class _AllIssuesState extends State<AllIssues> {
     //  MaterialPageRoute(builder: (context) => HomePage(widget.user)));
   }
   mynavigation() {
-     Navigator.push(context,
-     MaterialPageRoute(builder: (context) => Issues(widget.user)));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Issues(widget.user)));
   }
-           
-    
 
   void _onItemTapped(int index) {
     setState(() {
@@ -49,7 +46,7 @@ class _AllIssuesState extends State<AllIssues> {
         allnavigation();
       } else if (index == 2) {
         mynavigation();
-      }  
+      }
     });
   }
 
@@ -72,11 +69,11 @@ class _AllIssuesState extends State<AllIssues> {
               }),
         ],
       ),
-      body:StreamBuilder<QuerySnapshot>(
+      body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('users')
               .doc(widget.user!.uid)
-              .collection('Issues')
+              .collection('AllIssues')
               .snapshots(),
           builder: (context, snapshot) {
             return ListView.builder(
@@ -187,36 +184,22 @@ class _AllIssuesState extends State<AllIssues> {
                                           //               fontWeight:
                                           //                   FontWeight.w300),
                                           //         ))),
-                                          Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                    // gradient: LinearGradient(
-                                                    //     colors: [
-                                                    //       Colors.lightGreen,
-                                                    //       Colors.cyan
-                                                    //     ]),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                  ),
-                                                  padding: EdgeInsets.all(20),
-                                                  alignment: Alignment.topLeft,
-                                                  height: 100,
-                                                  child: TextField(
-                                                    controller:
-                                                        TextEditingController(
-                                                            text:
-                                                                documentSnapshot[
-                                                                    'content']),
-                                                    decoration: InputDecoration(
-                                                        labelText: 'Solution',
-                                                        border:
-                                                            InputBorder.none),
-                                                    maxLines: 20,
-                                                    readOnly: true,
-                                                    style: TextStyle(
-                                                        color: Colors.black),
-                                                  ))),
+                                          Container(
+                                            padding: EdgeInsets.all(20),
+                                            child: TextField(
+                                              controller: TextEditingController(
+                                                  text: documentSnapshot[
+                                                      'content']),
+                                              decoration: InputDecoration(
+                                                  labelText: 'Solution',
+                                                  border: InputBorder.none),
+                                              maxLines: 5,
+                                              readOnly: true,
+                                              onChanged: ((value) {
+                                                content = value;
+                                              }),
+                                            ),
+                                          ),
                                         ],
                                       )),
 
@@ -261,7 +244,6 @@ class _AllIssuesState extends State<AllIssues> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16)),
                         //check box to update the status
-                        
                       ));
                 }));
           }),
