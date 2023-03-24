@@ -18,7 +18,7 @@ class AllIssues extends StatefulWidget {
 
 class _AllIssuesState extends State<AllIssues> {
   var txt = TextEditingController();
- 
+
   static User? get user => null;
 
   int _selectedIndex = 1;
@@ -71,9 +71,7 @@ class _AllIssuesState extends State<AllIssues> {
       ),
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
-              .collection('users')
-              .doc(widget.user!.uid)
-              .collection('AllIssues')
+              .collectionGroup('AllIssues')
               .snapshots(),
           builder: (context, snapshot) {
             return ListView.builder(
@@ -122,7 +120,6 @@ class _AllIssuesState extends State<AllIssues> {
                                                 labelText: 'Issue Name',
                                               ),
                                               readOnly: true,
-                                              
                                             ),
                                           ),
                                           Container(
@@ -139,7 +136,6 @@ class _AllIssuesState extends State<AllIssues> {
                                                 labelText: 'Issue Type',
                                               ),
                                               readOnly: true,
-                                              
                                             ),
                                           ),
                                           Container(
@@ -156,7 +152,6 @@ class _AllIssuesState extends State<AllIssues> {
                                                 labelText: 'Issue Location',
                                               ),
                                               readOnly: true,
-                                              
                                             ),
                                           ),
                                           // Container(

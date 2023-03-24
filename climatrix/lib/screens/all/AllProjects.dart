@@ -21,7 +21,6 @@ class _AllProjectsState extends State<AllProjects> {
 
   static User? get user => null;
 
-
   int _selectedIndex = 1;
 
   homenavigation() {
@@ -34,11 +33,9 @@ class _AllProjectsState extends State<AllProjects> {
     //  MaterialPageRoute(builder: (context) => HomePage(widget.user)));
   }
   mynavigation() {
-     Navigator.push(context,
-     MaterialPageRoute(builder: (context) => Projects(widget.user)));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => Projects(widget.user)));
   }
-           
-    
 
   void _onItemTapped(int index) {
     setState(() {
@@ -49,7 +46,7 @@ class _AllProjectsState extends State<AllProjects> {
         allnavigation();
       } else if (index == 2) {
         mynavigation();
-      }  
+      }
     });
   }
 
@@ -74,9 +71,7 @@ class _AllProjectsState extends State<AllProjects> {
       ),
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
-              .collection('users')
-              .doc(widget.user!.uid)
-              .collection('Projects')
+              .collectionGroup('Projects')
               .snapshots(),
           builder: (context, snapshot) {
             return ListView.builder(
@@ -200,7 +195,6 @@ class _AllProjectsState extends State<AllProjects> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16)),
                         //check box to update the status
-              
                       ));
                 }));
           }),

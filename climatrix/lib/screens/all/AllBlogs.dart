@@ -19,9 +19,7 @@ class AllBlogs extends StatefulWidget {
 class _AllBlogsState extends State<AllBlogs> {
   var txt = TextEditingController();
 
-
   static User? get user => null;
-
 
   int _selectedIndex = 1;
 
@@ -35,11 +33,9 @@ class _AllBlogsState extends State<AllBlogs> {
     //  MaterialPageRoute(builder: (context) => HomePage(widget.user)));
   }
   mynavigation() {
-     Navigator.push(context,
-     MaterialPageRoute(builder: (context) => Blogs(widget.user)));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Blogs(widget.user)));
   }
-           
-    
 
   void _onItemTapped(int index) {
     setState(() {
@@ -50,7 +46,7 @@ class _AllBlogsState extends State<AllBlogs> {
         allnavigation();
       } else if (index == 2) {
         mynavigation();
-      }  
+      }
     });
   }
 
@@ -74,11 +70,8 @@ class _AllBlogsState extends State<AllBlogs> {
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
-              .collection('users')
-              .doc(widget.user!.uid)
-              .collection('Blogs')
-              .snapshots(),
+          stream:
+              FirebaseFirestore.instance.collectionGroup('Blogs').snapshots(),
           builder: (context, snapshot) {
             return ListView.builder(
                 shrinkWrap: true,
@@ -106,9 +99,17 @@ class _AllBlogsState extends State<AllBlogs> {
                                           Container(
                                               child: Align(
                                                   alignment: Alignment.topLeft,
-                                                  child: Text(
-                                                    documentSnapshot[
-                                                        'blogTitle'],
+                                                  child: TextField(
+                                                    controller:
+                                                        TextEditingController(
+                                                      text: documentSnapshot[
+                                                          'blogTitle'],
+                                                    ),
+                                                    decoration: InputDecoration(
+                                                        border:
+                                                            InputBorder.none,
+                                                        labelText: 'Title'),
+                                                    readOnly: true,
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 30,
@@ -118,9 +119,17 @@ class _AllBlogsState extends State<AllBlogs> {
                                           Container(
                                               child: Align(
                                                   alignment: Alignment.topLeft,
-                                                  child: Text(
-                                                    documentSnapshot[
-                                                        'authorName'],
+                                                  child: TextField(
+                                                    controller:
+                                                        TextEditingController(
+                                                      text: documentSnapshot[
+                                                          'authorName'],
+                                                    ),
+                                                    decoration: InputDecoration(
+                                                        border:
+                                                            InputBorder.none,
+                                                        labelText: 'Author'),
+                                                    readOnly: true,
                                                     style: TextStyle(
                                                         color: Color.fromARGB(
                                                             255, 83, 76, 76),
@@ -129,34 +138,29 @@ class _AllBlogsState extends State<AllBlogs> {
                                                             FontWeight.w300),
                                                   ))),
                                           Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                    gradient: LinearGradient(
-                                                        colors: [
-                                                          Colors.lightGreen,
-                                                          Colors.cyan
-                                                        ]),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                  ),
-                                                  padding: EdgeInsets.all(20),
-                                                  alignment: Alignment.topLeft,
-                                                  height: 600,
-                                                  child: TextField(
-                                                    controller:
-                                                        TextEditingController(
-                                                            text:
-                                                                documentSnapshot[
-                                                                    'content']),
-                                                    decoration: InputDecoration(
-                                                        border:
-                                                            InputBorder.none),
-                                                    maxLines: 50,
-                                                    readOnly: true,
-                                                    style: TextStyle(
-                                                        color: Colors.black),
-                                                  ))),
+                                              child:
+                                                  // decoration: BoxDecoration(
+                                                  //   gradient: LinearGradient(
+                                                  //       colors: [
+                                                  //         Colors.lightGreen,
+                                                  //         Colors.cyan
+                                                  //       ]),
+                                                  //   borderRadius:
+                                                  //       BorderRadius.circular(
+                                                  //           8),
+                                                  // ),
+
+                                                  TextField(
+                                            controller: TextEditingController(
+                                                text: documentSnapshot[
+                                                    'content']),
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none),
+                                            maxLines: 15,
+                                            readOnly: true,
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          )),
                                         ],
                                       )),
 
@@ -180,27 +184,23 @@ class _AllBlogsState extends State<AllBlogs> {
                               });
                         },
                         contentPadding: EdgeInsets.all(16),
-
-                  
-                        title: Text(
+                         title: Text(
                           documentSnapshot['blogTitle'],
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.left,
                         ),
                         subtitle: Text(
-                          documentSnapshot['content'],
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white),
+                          documentSnapshot['authorName'],
+                          textAlign: TextAlign.right,
+                          style: TextStyle(color: Colors.grey),
                         ),
-
                         tileColor: Colors.black,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16)),
-
                       ));
                 }));
           }),
