@@ -293,7 +293,7 @@ class _BlogsState extends State<Blogs> {
                                                             FontWeight.w300),
                                                   ))),
                                           Expanded(
-                                              child: Container(
+                                              child:
                                                   // decoration: BoxDecoration(
                                                   //   gradient: LinearGradient(
                                                   //       colors: [
@@ -304,10 +304,9 @@ class _BlogsState extends State<Blogs> {
                                                   //       BorderRadius.circular(
                                                   //           8),
                                                   // ),
-                                                  padding: EdgeInsets.all(20),
-                                                  alignment: Alignment.topLeft,
-                                                  height: 500,
-                                                  child: TextField(
+                                               
+                                                 
+                                                   TextField(
                                                     controller:
                                                         TextEditingController(
                                                             text:
@@ -316,11 +315,11 @@ class _BlogsState extends State<Blogs> {
                                                     decoration: InputDecoration(
                                                         border:
                                                             InputBorder.none),
-                                                    maxLines: 5,
+                                                    maxLines: 15,
                                                     readOnly: true,
                                                     style: TextStyle(
                                                         color: Colors.black),
-                                                  ))),
+                                                  )),
                                         ],
                                       )),
 
