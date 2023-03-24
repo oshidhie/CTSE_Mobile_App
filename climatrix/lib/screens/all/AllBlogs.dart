@@ -18,9 +18,7 @@ class AllBlogs extends StatefulWidget {
 
 class _AllBlogsState extends State<AllBlogs> {
   var txt = TextEditingController();
-  String vehicleNo = "";
-  String location = "";
-  String content = "";
+
 
   static User? get user => null;
 
@@ -79,7 +77,7 @@ class _AllBlogsState extends State<AllBlogs> {
           stream: FirebaseFirestore.instance
               .collection('users')
               .doc(widget.user!.uid)
-              .collection('AllBlogs')
+              .collection('Blogs')
               .snapshots(),
           builder: (context, snapshot) {
             return ListView.builder(
@@ -106,102 +104,45 @@ class _AllBlogsState extends State<AllBlogs> {
                                           child: Column(
                                         children: [
                                           Container(
-                                            padding: const EdgeInsets.all(16),
-                                            child: const Text(
-                                              "View Bloged Incident",
-                                              style: TextStyle(
-                                                  fontSize: 27,
-                                                  color: Colors.black),
-                                            ),
-                                          ),
-                                          Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                  ),
-                                                  padding: EdgeInsets.all(20),
+                                              child: Align(
                                                   alignment: Alignment.topLeft,
-                                                  //height: 20,
-                                                  child: TextField(
-                                                    controller:
-                                                        TextEditingController(
-                                                            text:
-                                                                documentSnapshot[
-                                                                    'location']),
-                                                    decoration: InputDecoration(
-                                                        labelText:
-                                                            'Location of Incident',
-                                                        border:
-                                                            InputBorder.none),
-                                                    maxLines: 1,
-                                                    readOnly: true,
+                                                  child: Text(
+                                                    documentSnapshot[
+                                                        'blogTitle'],
                                                     style: TextStyle(
-                                                        color: Colors.black),
+                                                        color: Colors.black,
+                                                        fontSize: 30,
+                                                        fontWeight:
+                                                            FontWeight.bold),
                                                   ))),
-
-                                          Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                  ),
-                                                  padding: EdgeInsets.all(20),
+                                          Container(
+                                              child: Align(
                                                   alignment: Alignment.topLeft,
-                                                  // height: 50,
-                                                  child: TextField(
-                                                    controller:
-                                                        TextEditingController(
-                                                            text: documentSnapshot[
-                                                                'vehicleNo']),
-                                                    decoration: InputDecoration(
-                                                        labelText:
-                                                            'Vehicle No Bloged',
-                                                        border:
-                                                            InputBorder.none),
-                                                    maxLines: 1,
-                                                    readOnly: true,
+                                                  child: Text(
+                                                    documentSnapshot[
+                                                        'authorName'],
                                                     style: TextStyle(
-                                                        color: Colors.black),
+                                                        color: Color.fromARGB(
+                                                            255, 83, 76, 76),
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w300),
                                                   ))),
-
-                                          // Container(
-                                          //     child: Align(
-                                          //         alignment: Alignment.topLeft,
-                                          //         child: Text(
-                                          //           documentSnapshot[
-                                          //               'location'],
-                                          //           style: TextStyle(
-                                          //               color: Colors.black,
-                                          //               fontSize: 30,
-                                          //               fontWeight:
-                                          //                   FontWeight.bold),
-                                          //         ))),
-                                          // Container(
-                                          //     child: Align(
-                                          //         alignment: Alignment.topLeft,
-                                          //         child: Text(
-                                          //           documentSnapshot[
-                                          //               'vehicleNo'],
-                                          //           style: TextStyle(
-                                          //               color: Color.fromARGB(
-                                          //                   255, 83, 76, 76),
-                                          //               fontSize: 15,
-                                          //               fontWeight:
-                                          //                   FontWeight.w300),
-                                          //         ))),
                                           Expanded(
                                               child: Container(
                                                   decoration: BoxDecoration(
+                                                    gradient: LinearGradient(
+                                                        colors: [
+                                                          Colors.lightGreen,
+                                                          Colors.cyan
+                                                        ]),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8),
                                                   ),
                                                   padding: EdgeInsets.all(20),
                                                   alignment: Alignment.topLeft,
-                                                  //height: 20,
+                                                  height: 600,
                                                   child: TextField(
                                                     controller:
                                                         TextEditingController(
@@ -209,11 +150,9 @@ class _AllBlogsState extends State<AllBlogs> {
                                                                 documentSnapshot[
                                                                     'content']),
                                                     decoration: InputDecoration(
-                                                        labelText:
-                                                            'Description of Incident',
                                                         border:
                                                             InputBorder.none),
-                                                    maxLines: 5,
+                                                    maxLines: 50,
                                                     readOnly: true,
                                                     style: TextStyle(
                                                         color: Colors.black),
@@ -223,8 +162,8 @@ class _AllBlogsState extends State<AllBlogs> {
 
                                       // child: Column(children: [
                                       //    Align(alignment: Alignment.topLeft,child:Column(children: [
-                                      //     Text(documentSnapshot['location'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),),
-                                      //     Text(documentSnapshot['vehicleNo'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),),
+                                      //     Text(documentSnapshot['blogTitle'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),),
+                                      //     Text(documentSnapshot['authorName'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),),
                                       //     Expanded(child: Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))
 
                                       //    ]),
@@ -233,8 +172,8 @@ class _AllBlogsState extends State<AllBlogs> {
                                       // ],)
                                     ),
 
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['location'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),))),
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['vehicleNo'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),))),
+                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['blogTitle'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),))),
+                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['authorName'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),))),
                                     // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))),
                                   ]),
                                 );
@@ -242,9 +181,9 @@ class _AllBlogsState extends State<AllBlogs> {
                         },
                         contentPadding: EdgeInsets.all(16),
 
-                        //list tasks with their title and status
+                        //list tasks with their title and statusr
                         title: Text(
-                          documentSnapshot['location'],
+                          documentSnapshot['blogTitle'],
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -262,9 +201,6 @@ class _AllBlogsState extends State<AllBlogs> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16)),
 
-                        
-                        //check box to update the status
-                        
                       ));
                 }));
           }),
