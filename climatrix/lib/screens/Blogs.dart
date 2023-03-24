@@ -379,7 +379,7 @@ class _BlogsState extends State<Blogs> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(8)),
                                     title: const Text(
-                                      'Delete confirmation',
+                                      'Delete Confirmation',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         
@@ -407,7 +407,7 @@ class _BlogsState extends State<Blogs> {
                                               style: ButtonStyle(
                                                   backgroundColor:
                                                       MaterialStatePropertyAll(
-                                                          Color.fromARGB(255, 67, 175, 71)),
+                                                          Colors.lightGreen),
                                                   alignment:
                                                       Alignment.center),
                                               onPressed: () {
@@ -495,12 +495,11 @@ class _BlogsState extends State<Blogs> {
                                             });
                                             Navigator.of(context).pop();
                                           },
-                                          child: const Text("update"),
+                                          child: const Text("Update"),
                                           style: ButtonStyle(
                                               backgroundColor:
                                                   MaterialStatePropertyAll(
-                                                     Color.fromARGB(
-                                                              255, 49, 112, 7)),
+                                                     Colors.lightGreen),
                                               alignment: Alignment.center),
                                         ),
                                       ),
