@@ -1,0 +1,26 @@
+html,
+body {
+    background-color: #f3f6f2
+}
+.center {
+    background:"transparent";
+    height: 350px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+    
+}
+.climatrix{
+    background:"transparent";
+    width: 250px;
+    margin: 0;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
