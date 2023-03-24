@@ -18,6 +18,7 @@ class _IssuesState extends State<Issues> {
   var txt = TextEditingController();
   String issueName = "";
   String issueType = "";
+  String location = "";
   String content = "";
 
   static User? get user => null;
@@ -32,6 +33,7 @@ class _IssuesState extends State<Issues> {
     Map<String, String> Issues = {
       'issueName': issueName,
       "issueType": issueType,
+      'location': location,
       'content': content
     };
     documentReference.add(Issues).whenComplete(() => print("input created"));
@@ -141,10 +143,22 @@ class _IssuesState extends State<Issues> {
                   padding: const EdgeInsets.all(16),
                   child: TextField(
                     decoration: const InputDecoration(
+                      labelText: 'Location',
+                      border: OutlineInputBorder(),
+                    ),
+                    onChanged: ((value) {
+                      location = value;
+                    }),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: TextField(
+                    decoration: const InputDecoration(
                       labelText: 'Solution',
                       border: OutlineInputBorder(),
                     ),
-                    maxLines: 10,
+                    maxLines: 9,
                     onChanged: ((value) {
                       content = value;
                     }),
@@ -297,6 +311,25 @@ class _IssuesState extends State<Issues> {
                                               }),
                                             ),
                                           ),
+                                          Container(
+                                            padding: EdgeInsets.all(16),
+                                            child: TextField(
+                                              controller: TextEditingController(
+                                                  text: documentSnapshot[
+                                                      'location']),
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: InputDecoration(
+                                                labelText: 'Issue Location',
+                                              ),
+                                              readOnly: true,
+                                              onChanged: ((value) {
+                                                content = value;
+                                              }),
+                                            ),
+                                          ),
                                           // Container(
                                           //     child: Align(
                                           //         alignment: Alignment.topLeft,
@@ -347,7 +380,7 @@ class _IssuesState extends State<Issues> {
                                                         labelText: 'Solution',
                                                         border:
                                                             InputBorder.none),
-                                                    maxLines: 50,
+                                                    maxLines: 20,
                                                     readOnly: true,
                                                     style: TextStyle(
                                                         color: Colors.black),
@@ -387,7 +420,7 @@ class _IssuesState extends State<Issues> {
                           textAlign: TextAlign.center,
                         ),
                         subtitle: Text(
-                          documentSnapshot['content'],
+                          documentSnapshot['location'],
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),
                         ),
@@ -526,13 +559,27 @@ class _IssuesState extends State<Issues> {
                                                 Icons.edit,
                                                 color: Colors.black,
                                               )),
-                                          maxLines: 3,
+                                          maxLines: 1,
                                           onChanged: ((value) {
                                             content = value;
                                           }),
                                         ),
                                       ),
-
+                                      Container(
+                                        padding: EdgeInsets.all(16),
+                                        child: TextField(
+                                          controller: TextEditingController(
+                                              text:
+                                                  documentSnapshot['location']),
+                                          decoration: InputDecoration(
+                                            labelText: 'Update Location',
+                                          ),
+                                          readOnly: true,
+                                          onChanged: ((value) {
+                                            content = value;
+                                          }),
+                                        ),
+                                      ),
                                       // Container(
                                       //   child: TextField(
                                       //     controller: TextEditingController(
@@ -559,7 +606,7 @@ class _IssuesState extends State<Issues> {
                                                 Icons.edit,
                                                 color: Colors.black,
                                               )),
-                                          maxLines: 10,
+                                          maxLines: 5,
                                           onChanged: ((value) {
                                             content = value;
                                           }),
