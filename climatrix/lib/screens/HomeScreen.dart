@@ -9,7 +9,6 @@ import 'package:flutter/src/widgets/placeholder.dart';
 
 import 'LoginPage.dart';
 
-
 class HomePage extends StatefulWidget {
   final User? user;
   const HomePage(this.user, {super.key});
@@ -21,161 +20,173 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    blognavigation() {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => Blogs(widget.user)));
+    }
 
-    blognavigation(){
-       Navigator.push(context,
-       MaterialPageRoute(builder: (context) => Blogs(widget.user)));
+    projectnavigation() {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => Projects(widget.user)));
     }
-    projectnavigation(){
-       Navigator.push(context,
-       MaterialPageRoute(builder: (context) => Projects(widget.user)));
+
+    issuesnavigation() {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => Issues(widget.user)));
     }
-    issuesnavigation(){
-       Navigator.push(context,
-       MaterialPageRoute(builder: (context) => Issues(widget.user)));
-    }
-    reportnavigation(){
-       Navigator.push(context,
-       MaterialPageRoute(builder: (context) => Reports(widget.user)));
+
+    reportnavigation() {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => Reports(widget.user)));
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        leading: Icon(
-          Icons.home,
+      appBar: PreferredSize(
+        //wrap with PreferredSize
+        preferredSize: Size.fromHeight(50), //height of appbar
+        child: AppBar(
+          backgroundColor: Colors.black,
+          leading: Icon(
+            Icons.home,
+          ),
+          centerTitle: true,
+          title: const Text('Home'),
+          actions: [
+            IconButton(
+                icon: Icon(Icons.logout),
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                }),
+          ],
         ),
-        centerTitle: true,
-        title: const Text('Home'),
-        actions: [
-          IconButton(icon: Icon(Icons.logout), onPressed: () {
-            Navigator.pushReplacement(context,
-       MaterialPageRoute(builder: (context) => LoginPage()));
-          }),
-        ],
       ),
-        // ignore: avoid_unnecessary_containers
-        body: Align(
-      alignment: Alignment.center,
-      child: Container(
+      // ignore: avoid_unnecessary_containers
+      body: Align(
         alignment: Alignment.center,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: <Color>[Colors.lightGreen, Colors.cyan])),
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: GridView(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
-            children: [
-              InkWell(
-                onTap: () {
-                  issuesnavigation();
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Color.fromARGB(255, 87, 197, 209),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        '../assests/isues.png',
-                        height: 80,
-                        width: 80,
-                      ),
-                      const Text(
-                        "Issues",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  projectnavigation();
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Color.fromARGB(255, 87, 209, 207),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        '../assests/organization.png',
-                        height: 80,
-                        width: 80,
-                      ),
-                      const Text(
-                        "Projects",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      )
-                    ],
+        child: Container(
+          alignment: Alignment.center,
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: <Color>[Colors.lightGreen, Colors.cyan])),
+          child: Padding(
+            // padding: const EdgeInsets.all(20.0),
+            // child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 120, 20, 20),
+            child: GridView(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
+              children: [
+                InkWell(
+                  onTap: () {
+                    issuesnavigation();
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Color.fromARGB(255, 87, 197, 209),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          '../assests/isues.png',
+                          height: 120,
+                          width: 120,
+                        ),
+                        const Text(
+                          "Issues",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              InkWell(
-                onTap: () {
-                  blognavigation();
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Color.fromARGB(255, 87, 197, 209),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        '../assests/blogging.png',
-                        height: 80,
-                        width: 80,
-                      ),
-                      const Text(
-                        "Blogs",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  reportnavigation();
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Color.fromARGB(255, 87, 209, 207),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        '../assests/report.png',
-                        height: 80,
-                        width: 80,
-                      ),
-                      const Text(
-                        "Report",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      )
-                    ],
+                InkWell(
+                  onTap: () {
+                    projectnavigation();
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Color.fromARGB(255, 87, 209, 207),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          '../assests/organization.png',
+                          height: 120,
+                          width: 120,
+                        ),
+                        const Text(
+                          "Projects",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+                InkWell(
+                  onTap: () {
+                    blognavigation();
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Color.fromARGB(255, 87, 197, 209),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          '../assests/blogging.png',
+                          height: 120,
+                          width: 120,
+                        ),
+                        const Text(
+                          "Blogs",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    reportnavigation();
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Color.fromARGB(255, 87, 209, 207),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          '../assests/report.png',
+                          height: 120,
+                          width: 120,
+                        ),
+                        const Text(
+                          "Report",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
-    ));
+    );
+    //);
   }
 }

@@ -16,8 +16,8 @@ class Issues extends StatefulWidget {
 
 class _IssuesState extends State<Issues> {
   var txt = TextEditingController();
-  String authorName = "";
-  String issueTitle = "";
+  String issueName = "";
+  String issueType = "";
   String content = "";
 
   static User? get user => null;
@@ -30,8 +30,8 @@ class _IssuesState extends State<Issues> {
             .doc(widget.user!.uid)
             .collection('Issues');
     Map<String, String> Issues = {
-      'authorName': authorName,
-      "issueTitle": issueTitle,
+      'issueName': issueName,
+      "issueType": issueType,
       'content': content
     };
     documentReference.add(Issues).whenComplete(() => print("input created"));
@@ -91,111 +91,108 @@ class _IssuesState extends State<Issues> {
   }
   addnavigation() {
     showDialog(
-                context: context,
-                builder: ((context) {
-                  return AlertDialog(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    shadowColor: Colors.purple,
+        context: context,
+        builder: ((context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            shadowColor: Colors.purple,
 
-                    content: Column(
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: <Color>[
-                            Colors.lightGreen,
-                            Colors.cyan
-                          ])),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          child: Text(
-                            "New issue",
-                            style: TextStyle(fontSize: 27, color: Colors.black),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          child: TextField(
-                            decoration: InputDecoration(
-                                labelText: 'Author name',
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(
-                                  Icons.edit,
-                                  color: Colors.black,
-                                )),
-                            onChanged: ((value) {
-                              authorName = value;
-                            }),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          child: TextField(
-                            decoration: InputDecoration(
-                                labelText: 'Enter your issue title',
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(
-                                  Icons.title,
-                                  color: Colors.black,
-                                )),
-                            onChanged: ((value) {
-                              issueTitle = value;
-                            }),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          child: TextField(
-                            decoration: InputDecoration(
-                                labelText: 'Type',
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(
-                                  Icons.edit_document,
-                                  color: Colors.black,
-                                )),
-                            maxLines: 15,
-                            onChanged: ((value) {
-                              content = value;
-                            }),
-                          ),
-                        ),
-                        // Container(
-                        //   child: TextField(onChanged: (value) {
-                        //     cstatus=value;
-                        //   },
-                        //     decoration: InputDecoration(labelText: 'Add ToDo'),),
-                        // )
-                      ],
-                    ),
-                    // content: TextField(onChanged: (value) {
-                    //   input=value;
-                    // },),
-                    // submit button
-                    actions: [
-                      Align(
-                          alignment: Alignment.topCenter,
-                          child: SizedBox(
-                              width: 200,
-                              height: 50,
-                              child: ElevatedButton(
-                                  style: const ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll(
-                                          Colors.lightGreen)),
-                                  onPressed: () {
-                                    setState(() {
-                                      //add tasks
-                                      createIssues();
-                                    });
-                                    //pop out dialog box after adding a task
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: const Text("Add"))))
-                    ],
-                  );
-                }));
-          
+            content: Column(
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          colors: <Color>[Colors.lightGreen, Colors.cyan])),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: const Text(
+                    "New issue",
+                    style: TextStyle(fontSize: 27, color: Colors.black),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: TextField(
+                    decoration: const InputDecoration(
+                        labelText: 'Issue name',
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(
+                          Icons.edit,
+                          color: Colors.black,
+                        )),
+                    onChanged: ((value) {
+                      issueName = value;
+                    }),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: TextField(
+                    decoration: const InputDecoration(
+                        labelText: 'Drought, Flood',
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(
+                          Icons.title,
+                          color: Colors.black,
+                        )),
+                    onChanged: ((value) {
+                      issueType = value;
+                    }),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: TextField(
+                    decoration: const InputDecoration(
+                        labelText: 'Solution',
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(
+                          Icons.edit_document,
+                          color: Colors.black,
+                        )),
+                    maxLines: 10,
+                    onChanged: ((value) {
+                      content = value;
+                    }),
+                  ),
+                ),
+                // Container(
+                //   child: TextField(onChanged: (value) {
+                //     cstatus=value;
+                //   },
+                //     decoration: InputDecoration(labelText: 'Add ToDo'),),
+                // )
+              ],
+            ),
+            // content: TextField(onChanged: (value) {
+            //   input=value;
+            // },),
+            // submit button
+            actions: [
+              Align(
+                  alignment: Alignment.topCenter,
+                  child: SizedBox(
+                      width: 200,
+                      height: 50,
+                      child: ElevatedButton(
+                          style: const ButtonStyle(
+                              backgroundColor:
+                                  MaterialStatePropertyAll(Colors.lightGreen)),
+                          onPressed: () {
+                            setState(() {
+                              //add tasks
+                              createIssues();
+                            });
+                            //pop out dialog box after adding a task
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text("Add"))))
+            ],
+          );
+        }));
   }
 
   void _onItemTapped(int index) {
@@ -232,7 +229,6 @@ class _IssuesState extends State<Issues> {
               }),
         ],
       ),
-
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('users')
@@ -264,45 +260,92 @@ class _IssuesState extends State<Issues> {
                                           child: Column(
                                         children: [
                                           Container(
-                                              child: Align(
-                                                  alignment: Alignment.topLeft,
-                                                  child: Text(
-                                                    documentSnapshot[
-                                                        'issueTitle'],
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 30,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ))),
+                                            padding: const EdgeInsets.all(16),
+                                            child: const Text(
+                                              "View issue",
+                                              style: TextStyle(
+                                                  fontSize: 27,
+                                                  color: Colors.black),
+                                            ),
+                                          ),
                                           Container(
-                                              child: Align(
-                                                  alignment: Alignment.topLeft,
-                                                  child: Text(
-                                                    documentSnapshot[
-                                                        'authorName'],
-                                                    style: TextStyle(
-                                                        color: Color.fromARGB(
-                                                            255, 83, 76, 76),
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.w300),
-                                                  ))),
+                                            padding: EdgeInsets.all(16),
+                                            child: TextField(
+                                              controller: TextEditingController(
+                                                  text: documentSnapshot[
+                                                      'issueName']),
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: InputDecoration(
+                                                labelText: 'Issue Name',
+                                              ),
+                                              readOnly: true,
+                                              onChanged: ((value) {
+                                                content = value;
+                                              }),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.all(16),
+                                            child: TextField(
+                                              controller: TextEditingController(
+                                                  text: documentSnapshot[
+                                                      'issueType']),
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                              decoration: InputDecoration(
+                                                labelText: 'Issue Type',
+                                              ),
+                                              readOnly: true,
+                                              onChanged: ((value) {
+                                                content = value;
+                                              }),
+                                            ),
+                                          ),
+                                          // Container(
+                                          //     child: Align(
+                                          //         alignment: Alignment.topLeft,
+                                          //         child: Text(
+                                          //           documentSnapshot[
+                                          //               'issueType'],
+                                          //           style: TextStyle(
+                                          //               color: Colors.black,
+                                          //               fontSize: 30,
+                                          //               fontWeight:
+                                          //                   FontWeight.bold),
+                                          //         ))),
+                                          // Container(
+                                          //     child: Align(
+                                          //         alignment: Alignment.topLeft,
+                                          //         child: Text(
+                                          //           documentSnapshot[
+                                          //               'issueName'],
+                                          //           style: TextStyle(
+                                          //               color: Color.fromARGB(
+                                          //                   255, 83, 76, 76),
+                                          //               fontSize: 15,
+                                          //               fontWeight:
+                                          //                   FontWeight.w300),
+                                          //         ))),
                                           Expanded(
                                               child: Container(
                                                   decoration: BoxDecoration(
-                                                    gradient: LinearGradient(
-                                                        colors: [
-                                                          Colors.lightGreen,
-                                                          Colors.cyan
-                                                        ]),
+                                                    // gradient: LinearGradient(
+                                                    //     colors: [
+                                                    //       Colors.lightGreen,
+                                                    //       Colors.cyan
+                                                    //     ]),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8),
                                                   ),
                                                   padding: EdgeInsets.all(20),
                                                   alignment: Alignment.topLeft,
-                                                  height: 600,
+                                                  height: 100,
                                                   child: TextField(
                                                     controller:
                                                         TextEditingController(
@@ -310,6 +353,7 @@ class _IssuesState extends State<Issues> {
                                                                 documentSnapshot[
                                                                     'content']),
                                                     decoration: InputDecoration(
+                                                        labelText: 'Solution',
                                                         border:
                                                             InputBorder.none),
                                                     maxLines: 50,
@@ -322,8 +366,8 @@ class _IssuesState extends State<Issues> {
 
                                       // child: Column(children: [
                                       //    Align(alignment: Alignment.topLeft,child:Column(children: [
-                                      //     Text(documentSnapshot['issueTitle'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),),
-                                      //     Text(documentSnapshot['authorName'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),),
+                                      //     Text(documentSnapshot['issueType'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),),
+                                      //     Text(documentSnapshot['issueName'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),),
                                       //     Expanded(child: Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))
 
                                       //    ]),
@@ -332,8 +376,8 @@ class _IssuesState extends State<Issues> {
                                       // ],)
                                     ),
 
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['issueTitle'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),))),
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['authorName'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),))),
+                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['issueType'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),))),
+                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['issueName'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),))),
                                     // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))),
                                   ]),
                                 );
@@ -343,7 +387,7 @@ class _IssuesState extends State<Issues> {
 
                         //list tasks with their title and statusr
                         title: Text(
-                          documentSnapshot['issueTitle'],
+                          documentSnapshot['issueType'],
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -382,38 +426,44 @@ class _IssuesState extends State<Issues> {
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
-                                    content: Column(children: [
-                                      Container(
-                                        child: const Text(
-                                          "Are you sure you want to delete this post?",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w100,
-                                          ),
-                                          textAlign: TextAlign.justify,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                          height: 50,
-                                          width: 100,
-                                          child: Container(
-                                            child: ElevatedButton(
-                                              child: const Text('sure'),
-                                              style: ButtonStyle(
-                                                  backgroundColor:
-                                                      MaterialStatePropertyAll(
-                                                          Colors.black),
-                                                  alignment:
-                                                      Alignment.bottomCenter),
-                                              onPressed: () {
-                                                setState(() {
-                                                  deletIssues(documentSnapshot
-                                                      .reference.id);
-                                                });
-                                                Navigator.of(context).pop();
-                                              },
+                                    content: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            child: const Text(
+                                              "Are you sure you want to delete this issue?",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w100,
+                                              ),
+                                              textAlign: TextAlign.justify,
                                             ),
-                                          ))
-                                    ]),
+                                          ),
+                                          SizedBox(
+                                              height: 50,
+                                              width: 100,
+                                              child: Container(
+                                                child: ElevatedButton(
+                                                  child: const Text('Yes'),
+                                                  style: ButtonStyle(
+                                                      backgroundColor:
+                                                          MaterialStatePropertyAll(
+                                                              Colors.black),
+                                                      alignment:
+                                                          Alignment.center),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      deletIssues(
+                                                          documentSnapshot
+                                                              .reference.id);
+                                                    });
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                ),
+                                              ))
+                                        ]),
                                   );
                                 });
                           },
@@ -434,29 +484,77 @@ class _IssuesState extends State<Issues> {
                                     ),
                                     content: Column(children: [
                                       Container(
-                                        child: TextField(
-                                          controller: TextEditingController(
-                                              text: documentSnapshot[
-                                                  'authorName']),
-                                          autofocus: true,
-                                          decoration: InputDecoration(
-                                              hintText: 'Author name',
-                                              border: InputBorder.none),
-                                          readOnly: true,
+                                        padding: const EdgeInsets.all(16),
+                                        child: const Text(
+                                          "Update issue",
+                                          style: TextStyle(
+                                              fontSize: 27,
+                                              color: Colors.black),
                                         ),
                                       ),
+
                                       Container(
+                                        padding: EdgeInsets.all(16),
                                         child: TextField(
                                           controller: TextEditingController(
                                               text: documentSnapshot[
-                                                  'issueTitle']),
-                                          autofocus: true,
+                                                  'issueName']),
                                           decoration: InputDecoration(
-                                              hintText: 'Title',
-                                              border: InputBorder.none),
+                                            labelText: 'Issue Name',
+                                          ),
                                           readOnly: true,
+                                          onChanged: ((value) {
+                                            content = value;
+                                          }),
                                         ),
                                       ),
+
+                                      // Container(
+                                      //   child: TextField(
+                                      //     controller: TextEditingController(
+                                      //         text: documentSnapshot[
+                                      //             'issueName']),
+                                      //     autofocus: true,
+                                      //     decoration: const InputDecoration(
+                                      //         hintText: 'Issue name',
+                                      //         border: InputBorder.none),
+                                      //     readOnly: true,
+                                      //   ),
+                                      // ),
+
+                                      Container(
+                                        padding: EdgeInsets.all(16),
+                                        child: TextField(
+                                          controller: TextEditingController(
+                                              text: documentSnapshot[
+                                                  'issueType']),
+                                          decoration: InputDecoration(
+                                              labelText: 'Update Issue Type',
+                                              border: OutlineInputBorder(),
+                                              prefixIcon: Icon(
+                                                Icons.edit,
+                                                color: Colors.black,
+                                              )),
+                                          maxLines: 3,
+                                          onChanged: ((value) {
+                                            content = value;
+                                          }),
+                                        ),
+                                      ),
+
+                                      // Container(
+                                      //   child: TextField(
+                                      //     controller: TextEditingController(
+                                      //         text: documentSnapshot[
+                                      //             'issueType']),
+                                      //     autofocus: true,
+                                      //     decoration: InputDecoration(
+                                      //         hintText: 'Title',
+                                      //         border: InputBorder.none),
+                                      //     readOnly: true,
+                                      //   ),
+                                      // ),
+
                                       Container(
                                         padding: EdgeInsets.all(16),
                                         child: TextField(
@@ -464,13 +562,13 @@ class _IssuesState extends State<Issues> {
                                               text:
                                                   documentSnapshot['content']),
                                           decoration: InputDecoration(
-                                              labelText: 'Type',
+                                              labelText: 'Update Solution',
                                               border: OutlineInputBorder(),
                                               prefixIcon: Icon(
                                                 Icons.edit,
                                                 color: Colors.black,
                                               )),
-                                          maxLines: 15,
+                                          maxLines: 10,
                                           onChanged: ((value) {
                                             content = value;
                                           }),
@@ -488,11 +586,12 @@ class _IssuesState extends State<Issues> {
                                             });
                                             Navigator.of(context).pop();
                                           },
-                                          child: const Text("update"),
+                                          child: const Text("Update"),
                                           style: ButtonStyle(
                                               backgroundColor:
                                                   MaterialStatePropertyAll(
-                                                      Colors.black),
+                                                      Color.fromARGB(
+                                                          255, 102, 255, 0)),
                                               alignment: Alignment.center),
                                         ),
                                       )
