@@ -359,7 +359,7 @@ class _ProjectsState extends State<Projects> {
 
                         trailing: IconButton(
                           icon: Icon(Icons.delete),
-                          color: Color.fromARGB(255, 179, 231, 121),
+                          color: Color.fromARGB(255, 248, 79, 79),
                           onPressed: () {
                             // setState(() {
                             //   //delete an item
