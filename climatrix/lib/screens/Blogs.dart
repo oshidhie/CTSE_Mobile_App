@@ -2,6 +2,7 @@
 
 import 'package:climatrix/screens/HomeScreen.dart';
 import 'package:climatrix/screens/LoginPage.dart';
+import 'package:climatrix/screens/all/AllBlogs.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -82,8 +83,8 @@ class _BlogsState extends State<Blogs> {
   }
 
   allnavigation() {
-    //  Navigator.push(context,
-    //  MaterialPageRoute(builder: (context) => HomePage(widget.user)));
+     Navigator.push(context,
+     MaterialPageRoute(builder: (context) => AllBlogs(widget.user)));
   }
   mynavigation() {
     //  Navigator.push(context,
