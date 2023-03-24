@@ -18,7 +18,7 @@ class AllIssues extends StatefulWidget {
 
 class _AllIssuesState extends State<AllIssues> {
   var txt = TextEditingController();
-
+ 
   static User? get user => null;
 
 
@@ -125,9 +125,7 @@ class _AllIssuesState extends State<AllIssues> {
                                                 labelText: 'Issue Name',
                                               ),
                                               readOnly: true,
-                                              onChanged: ((value) {
-                                                content = value;
-                                              }),
+                                              
                                             ),
                                           ),
                                           Container(
@@ -144,9 +142,7 @@ class _AllIssuesState extends State<AllIssues> {
                                                 labelText: 'Issue Type',
                                               ),
                                               readOnly: true,
-                                              onChanged: ((value) {
-                                                content = value;
-                                              }),
+                                              
                                             ),
                                           ),
                                           Container(
@@ -163,9 +159,7 @@ class _AllIssuesState extends State<AllIssues> {
                                                 labelText: 'Issue Location',
                                               ),
                                               readOnly: true,
-                                              onChanged: ((value) {
-                                                content = value;
-                                              }),
+                                              
                                             ),
                                           ),
                                           // Container(
