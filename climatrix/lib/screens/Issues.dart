@@ -64,21 +64,6 @@ class _IssuesState extends State<Issues> {
 
   int _selectedIndex = 2;
 
-  // List<Widget> _widgetOptions = <Widget>[
-  //  blognavigation(),
-  //   Text(
-  //     'Index 1: Business',
-
-  //   ),
-  //   Text(
-  //     'Index 2: School',
-
-  //   ),
-  //   Text(
-  //     'Index 3: Settings',
-
-  //   ),
-  // ];
   homenavigation() {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => HomePage(widget.user)));
@@ -89,10 +74,7 @@ class _IssuesState extends State<Issues> {
         MaterialPageRoute(builder: (context) => AllIssues(widget.user)));
   }
 
-  mynavigation() {
-    //  Navigator.push(context,
-    //  MaterialPageRoute(builder: (context) => HomePage(widget.user)));
-  }
+  mynavigation() {}
   addnavigation() {
     showDialog(
         context: context,
@@ -102,7 +84,6 @@ class _IssuesState extends State<Issues> {
               borderRadius: BorderRadius.circular(8),
             ),
             shadowColor: Colors.purple,
-
             content: Column(
               children: <Widget>[
                 Container(
@@ -166,18 +147,8 @@ class _IssuesState extends State<Issues> {
                     }),
                   ),
                 ),
-                // Container(
-                //   child: TextField(onChanged: (value) {
-                //     cstatus=value;
-                //   },
-                //     decoration: InputDecoration(labelText: 'Add ToDo'),),
-                // )
               ],
             ),
-            // content: TextField(onChanged: (value) {
-            //   input=value;
-            // },),
-            // submit button
             actions: [
               Align(
                   alignment: Alignment.topCenter,
@@ -249,6 +220,8 @@ class _IssuesState extends State<Issues> {
                 itemBuilder: ((context, index) {
                   DocumentSnapshot documentSnapshot =
                       snapshot.data!.docs[index];
+
+                  //View SIngle Issue
                   return Card(
                       margin: EdgeInsets.all(16),
                       key: Key(index.toString()),
@@ -332,32 +305,6 @@ class _IssuesState extends State<Issues> {
                                               }),
                                             ),
                                           ),
-                                          // Container(
-                                          //     child: Align(
-                                          //         alignment: Alignment.topLeft,
-                                          //         child: Text(
-                                          //           documentSnapshot[
-                                          //               'issueType'],
-                                          //           style: TextStyle(
-                                          //               color: Colors.black,
-                                          //               fontSize: 30,
-                                          //               fontWeight:
-                                          //                   FontWeight.bold),
-                                          //         ))),
-                                          // Container(
-                                          //     child: Align(
-                                          //         alignment: Alignment.topLeft,
-                                          //         child: Text(
-                                          //           documentSnapshot[
-                                          //               'issueName'],
-                                          //           style: TextStyle(
-                                          //               color: Color.fromARGB(
-                                          //                   255, 83, 76, 76),
-                                          //               fontSize: 15,
-                                          //               fontWeight:
-                                          //                   FontWeight.w300),
-                                          //         ))),
-
                                           Container(
                                             padding: EdgeInsets.all(20),
                                             child: TextField(
@@ -374,62 +321,16 @@ class _IssuesState extends State<Issues> {
                                               }),
                                             ),
                                           ),
-
-                                          // Expanded(
-                                          //     child: Container(
-                                          //         decoration: BoxDecoration(
-                                          //           // gradient: LinearGradient(
-                                          //           //     colors: [
-                                          //           //       Colors.lightGreen,
-                                          //           //       Colors.cyan
-                                          //           //     ]),
-                                          //           borderRadius:
-                                          //               BorderRadius.circular(
-                                          //                   8),
-                                          //         ),
-                                          //         padding: EdgeInsets.all(20),
-                                          //         alignment: Alignment.topLeft,
-                                          //         // height: 100,
-                                          //         child: TextField(
-                                          //           controller:
-                                          //               TextEditingController(
-                                          //                   text:
-                                          //                       documentSnapshot[
-                                          //                           'content']),
-                                          //           decoration: InputDecoration(
-                                          //               labelText: 'Solution',
-                                          //               border:
-                                          //                   InputBorder.none),
-                                          //           maxLines: 5,
-                                          //           readOnly: true,
-                                          //           style: TextStyle(
-                                          //               color: Colors.black),
-                                          //         ))),
                                         ],
                                       )),
-
-                                      // child: Column(children: [
-                                      //    Align(alignment: Alignment.topLeft,child:Column(children: [
-                                      //     Text(documentSnapshot['issueType'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),),
-                                      //     Text(documentSnapshot['issueName'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),),
-                                      //     Expanded(child: Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))
-
-                                      //    ]),
-                                      //    ),
-
-                                      // ],)
                                     ),
-
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['issueType'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),))),
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['issueName'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),))),
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))),
                                   ]),
                                 );
                               });
                         },
                         contentPadding: EdgeInsets.all(16),
 
-                        //list tasks with their title and status
+                        //list tasks with their type and location
                         title: Text(
                           documentSnapshot['issueType'],
                           style: TextStyle(
@@ -453,13 +354,10 @@ class _IssuesState extends State<Issues> {
                           icon: Icon(Icons.delete),
                           color: Color.fromARGB(255, 179, 231, 121),
                           onPressed: () {
-                            // setState(() {
-                            //   //delete an item
-                            //   deletIssues(documentSnapshot.reference.id);
-                            // });
                             showDialog(
                                 context: context,
                                 builder: (context) {
+                                  //delete issue
                                   return AlertDialog(
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(8)),
@@ -512,7 +410,7 @@ class _IssuesState extends State<Issues> {
                                 });
                           },
                         ),
-                        //check box to update the status
+                        //Update Issues
                         leading: IconButton(
                           icon: Icon(
                             Icons.border_color,
@@ -536,7 +434,6 @@ class _IssuesState extends State<Issues> {
                                               color: Colors.black),
                                         ),
                                       ),
-
                                       Container(
                                         padding: EdgeInsets.all(16),
                                         child: TextField(
@@ -552,20 +449,6 @@ class _IssuesState extends State<Issues> {
                                           }),
                                         ),
                                       ),
-
-                                      // Container(
-                                      //   child: TextField(
-                                      //     controller: TextEditingController(
-                                      //         text: documentSnapshot[
-                                      //             'issueName']),
-                                      //     autofocus: true,
-                                      //     decoration: const InputDecoration(
-                                      //         hintText: 'Issue name',
-                                      //         border: InputBorder.none),
-                                      //     readOnly: true,
-                                      //   ),
-                                      // ),
-
                                       Container(
                                         padding: EdgeInsets.all(16),
                                         child: TextField(
@@ -600,19 +483,6 @@ class _IssuesState extends State<Issues> {
                                           }),
                                         ),
                                       ),
-                                      // Container(
-                                      //   child: TextField(
-                                      //     controller: TextEditingController(
-                                      //         text: documentSnapshot[
-                                      //             'issueType']),
-                                      //     autofocus: true,
-                                      //     decoration: InputDecoration(
-                                      //         hintText: 'Title',
-                                      //         border: InputBorder.none),
-                                      //     readOnly: true,
-                                      //   ),
-                                      // ),
-
                                       Container(
                                         padding: EdgeInsets.all(16),
                                         child: TextField(
