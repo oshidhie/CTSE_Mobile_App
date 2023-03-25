@@ -70,7 +70,7 @@ class _AllReportsState extends State<AllReports> {
       ),
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
-              .collectionGroup('AllReports')
+              .collectionGroup('Reports')
               .snapshots(),
           builder: (context, snapshot) {
             return ListView.builder(
