@@ -38,7 +38,7 @@ class _ReportsState extends State<Reports> {
     documentReference.add(Reports).whenComplete(() => print("input created"));
   }
 
-  //function to delete items from the todo list
+  //function to delete items from the report list
   deletReports(item) {
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('users')
@@ -140,7 +140,7 @@ class _ReportsState extends State<Reports> {
                 //   child: TextField(onChanged: (value) {
                 //     cstatus=value;
                 //   },
-                //     decoration: InputDecoration(labelText: 'Add ToDo'),),
+                //     decoration: InputDecoration(labelText: 'Add Report'),),
                 // )
               ],
             ),
