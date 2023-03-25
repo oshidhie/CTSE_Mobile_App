@@ -69,9 +69,8 @@ class _AllReportsState extends State<AllReports> {
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
-              .collectionGroup('Reports')
-              .snapshots(),
+          stream:
+              FirebaseFirestore.instance.collectionGroup('Reports').snapshots(),
           builder: (context, snapshot) {
             return ListView.builder(
                 shrinkWrap: true,
@@ -131,7 +130,6 @@ class _AllReportsState extends State<AllReports> {
                                                     style: TextStyle(
                                                         color: Colors.black),
                                                   ))),
-
                                           Expanded(
                                               child: Container(
                                                   decoration: BoxDecoration(
@@ -157,32 +155,6 @@ class _AllReportsState extends State<AllReports> {
                                                     style: TextStyle(
                                                         color: Colors.black),
                                                   ))),
-
-                                          // Container(
-                                          //     child: Align(
-                                          //         alignment: Alignment.topLeft,
-                                          //         child: Text(
-                                          //           documentSnapshot[
-                                          //               'location'],
-                                          //           style: TextStyle(
-                                          //               color: Colors.black,
-                                          //               fontSize: 30,
-                                          //               fontWeight:
-                                          //                   FontWeight.bold),
-                                          //         ))),
-                                          // Container(
-                                          //     child: Align(
-                                          //         alignment: Alignment.topLeft,
-                                          //         child: Text(
-                                          //           documentSnapshot[
-                                          //               'vehicleNo'],
-                                          //           style: TextStyle(
-                                          //               color: Color.fromARGB(
-                                          //                   255, 83, 76, 76),
-                                          //               fontSize: 15,
-                                          //               fontWeight:
-                                          //                   FontWeight.w300),
-                                          //         ))),
                                           Expanded(
                                               child: Container(
                                                   decoration: BoxDecoration(
@@ -211,22 +183,7 @@ class _AllReportsState extends State<AllReports> {
                                                   ))),
                                         ],
                                       )),
-
-                                      // child: Column(children: [
-                                      //    Align(alignment: Alignment.topLeft,child:Column(children: [
-                                      //     Text(documentSnapshot['location'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),),
-                                      //     Text(documentSnapshot['vehicleNo'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),),
-                                      //     Expanded(child: Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))
-
-                                      //    ]),
-                                      //    ),
-
-                                      // ],)
                                     ),
-
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['location'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),))),
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['vehicleNo'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),))),
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))),
                                   ]),
                                 );
                               });
