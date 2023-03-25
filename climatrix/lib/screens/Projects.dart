@@ -40,7 +40,7 @@ class _ProjectsState extends State<Projects> {
     documentReference.add(Projects).whenComplete(() => print("input created"));
   }
 
-  //function to delete items from the todo list
+  //function to delete items from the list
   deletProjects(item) {
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('users')
@@ -52,14 +52,18 @@ class _ProjectsState extends State<Projects> {
   }
 
   //function to update the status of a task by clicking on the check box
-  updateProjects(itemId, content) {
+  updateProjects(itemId, content, projectTitle, orgName, chairName) {
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('users')
         .doc(widget.user!.uid)
         .collection('Projects')
         .doc(itemId);
-    documentReference
-        .update({'content': content}).whenComplete(() => print("Updated"));
+    documentReference.update({
+      'content': content,
+      'projectTitle': projectTitle,
+      'orgName': orgName,
+      'chairName': chairName
+    }).whenComplete(() => print("Updated"));
   }
 
   int _selectedIndex = 2;
@@ -319,7 +323,8 @@ class _ProjectsState extends State<Projects> {
                                                     'content']),
                                             decoration: InputDecoration(
                                                 border: InputBorder.none,
-                                                labelText: 'Project Description'),
+                                                labelText:
+                                                    'Project Description'),
                                             maxLines: 15,
                                             readOnly: true,
                                             style:
@@ -430,24 +435,30 @@ class _ProjectsState extends State<Projects> {
                                                   'chairName']),
                                           autofocus: true,
                                           decoration: InputDecoration(
-                                              hintText: 'ChairPerson Name',
-                                              labelText: 'Chairperson',
-                                              border: OutlineInputBorder(),),
-                                          readOnly: true,
+                                            hintText: 'ChairPerson Name',
+                                            labelText: 'Chairperson',
+                                            border: OutlineInputBorder(),
+                                          ),
+                                          onChanged: ((value) {
+                                            chairName = value;
+                                          }),
                                         ),
                                       ),
-                                       Container(
+                                      Container(
                                         padding: EdgeInsets.all(16),
                                         child: TextField(
                                           controller: TextEditingController(
-                                              text: documentSnapshot[
-                                                  'orgName']),
+                                              text:
+                                                  documentSnapshot['orgName']),
                                           autofocus: true,
                                           decoration: InputDecoration(
-                                              hintText: 'Organization',
-                                             labelText: 'Organization',
-                                              border: OutlineInputBorder(),),
-                                          readOnly: true,
+                                            hintText: 'Organization',
+                                            labelText: 'Organization',
+                                            border: OutlineInputBorder(),
+                                          ),
+                                          onChanged: ((value) {
+                                            orgName = value;
+                                          }),
                                         ),
                                       ),
                                       Container(
@@ -458,10 +469,13 @@ class _ProjectsState extends State<Projects> {
                                                   'projectTitle']),
                                           autofocus: true,
                                           decoration: InputDecoration(
-                                              hintText: 'Title',
-                                              labelText: 'Project Title',
-                                              border: OutlineInputBorder(),),
-                                          readOnly: true,
+                                            hintText: 'Title',
+                                            labelText: 'Project Title',
+                                            border: OutlineInputBorder(),
+                                          ),
+                                          onChanged: ((value) {
+                                            projectTitle = value;
+                                          }),
                                         ),
                                       ),
                                       Container(
@@ -491,7 +505,8 @@ class _ProjectsState extends State<Projects> {
                                             setState(() {
                                               updateProjects(
                                                   documentSnapshot.reference.id,
-                                                  content);
+                                                  content,
+                                                  projectTitle,orgName,chairName);
                                             });
                                             Navigator.of(context).pop();
                                           },
