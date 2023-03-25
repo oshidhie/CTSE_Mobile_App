@@ -161,18 +161,10 @@ class _BlogsState extends State<Blogs> {
                             }),
                           ),
                         ),
-                        // Container(
-                        //   child: TextField(onChanged: (value) {
-                        //     cstatus=value;
-                        //   },
-                        //     decoration: InputDecoration(labelText: 'Add ToDo'),),
-                        // )
+                       
                       ],
                     ),
-                    // content: TextField(onChanged: (value) {
-                    //   input=value;
-                    // },),
-                    // submit button
+                   
                     actions: [
                       Align(
                           alignment: Alignment.topCenter,
