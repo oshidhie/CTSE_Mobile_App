@@ -17,8 +17,7 @@ class Projects extends StatefulWidget {
 
 class _ProjectsState extends State<Projects> {
   var txt = TextEditingController();
-  String chairName = "";
-  String orgName = "";
+  String authorName = "";
   String projectTitle = "";
   String content = "";
 
@@ -32,8 +31,7 @@ class _ProjectsState extends State<Projects> {
             .doc(widget.user!.uid)
             .collection('Projects');
     Map<String, String> Projects = {
-      'chairName': chairName,
-      'orgName': orgName,
+      'authorName': authorName,
       "projectTitle": projectTitle,
       'content': content
     };
@@ -64,6 +62,7 @@ class _ProjectsState extends State<Projects> {
 
   int _selectedIndex = 2;
 
+
   homenavigation() {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => HomePage(widget.user)));
@@ -74,7 +73,9 @@ class _ProjectsState extends State<Projects> {
         MaterialPageRoute(builder: (context) => AllProjects(widget.user)));
   }
 
-  mynavigation() {}
+  mynavigation() {
+
+  }
   addnavigation() {
     showDialog(
         context: context,
@@ -84,6 +85,7 @@ class _ProjectsState extends State<Projects> {
               borderRadius: BorderRadius.circular(8),
             ),
             shadowColor: Colors.purple,
+
             content: Column(
               children: <Widget>[
                 Container(
@@ -109,22 +111,7 @@ class _ProjectsState extends State<Projects> {
                           color: Colors.black,
                         )),
                     onChanged: ((value) {
-                      chairName = value;
-                    }),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(16),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        labelText: 'Organization',
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(
-                          Icons.edit,
-                          color: Colors.black,
-                        )),
-                    onChanged: ((value) {
-                      orgName = value;
+                      authorName = value;
                     }),
                   ),
                 ),
@@ -159,8 +146,10 @@ class _ProjectsState extends State<Projects> {
                     }),
                   ),
                 ),
+              
               ],
             ),
+           
             actions: [
               Align(
                   alignment: Alignment.topCenter,
@@ -251,17 +240,10 @@ class _ProjectsState extends State<Projects> {
                                         children: [
                                           Container(
                                               child: Align(
-                                                  alignment: Alignment.center,
-                                                  child: TextField(
-                                                    controller:
-                                                        TextEditingController(
-                                                      text: documentSnapshot[
-                                                          'projectTitle'],
-                                                    ),
-                                                    decoration: InputDecoration(
-                                                      border: InputBorder.none,
-                                                    ),
-                                                    readOnly: true,
+                                                  alignment: Alignment.topLeft,
+                                                  child: Text(
+                                                    documentSnapshot[
+                                                        'projectTitle'],
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 30,
@@ -271,40 +253,9 @@ class _ProjectsState extends State<Projects> {
                                           Container(
                                               child: Align(
                                                   alignment: Alignment.topLeft,
-                                                  child: TextField(
-                                                    controller:
-                                                        TextEditingController(
-                                                      text: documentSnapshot[
-                                                          'chairName'],
-                                                    ),
-                                                    decoration: InputDecoration(
-                                                        border:
-                                                            InputBorder.none,
-                                                        labelText:
-                                                            'Chairperson'),
-                                                    readOnly: true,
-                                                    style: TextStyle(
-                                                        color: Color.fromARGB(
-                                                            255, 83, 76, 76),
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.w300),
-                                                  ))),
-                                          Container(
-                                              child: Align(
-                                                  alignment: Alignment.topLeft,
-                                                  child: TextField(
-                                                    controller:
-                                                        TextEditingController(
-                                                      text: documentSnapshot[
-                                                          'orgName'],
-                                                    ),
-                                                    decoration: InputDecoration(
-                                                        border:
-                                                            InputBorder.none,
-                                                        labelText:
-                                                            'Organization'),
-                                                    readOnly: true,
+                                                  child: Text(
+                                                    documentSnapshot[
+                                                        'authorName'],
                                                     style: TextStyle(
                                                         color: Color.fromARGB(
                                                             255, 83, 76, 76),
@@ -313,18 +264,34 @@ class _ProjectsState extends State<Projects> {
                                                             FontWeight.w300),
                                                   ))),
                                           Expanded(
-                                              child: TextField(
-                                            controller: TextEditingController(
-                                                text: documentSnapshot[
-                                                    'content']),
-                                            decoration: InputDecoration(
-                                                border: InputBorder.none,
-                                                labelText: 'Project Description'),
-                                            maxLines: 15,
-                                            readOnly: true,
-                                            style:
-                                                TextStyle(color: Colors.black),
-                                          )),
+                                              child: Container(
+                                                  decoration: BoxDecoration(
+                                                    gradient: LinearGradient(
+                                                        colors: [
+                                                          Colors.lightGreen,
+                                                          Colors.cyan
+                                                        ]),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                  ),
+                                                  padding: EdgeInsets.all(20),
+                                                  alignment: Alignment.topLeft,
+                                                  height: 250,
+                                                  child: TextField(
+                                                    controller:
+                                                        TextEditingController(
+                                                            text:
+                                                                documentSnapshot[
+                                                                    'content']),
+                                                    decoration: InputDecoration(
+                                                        border:
+                                                            InputBorder.none),
+                                                    maxLines: 10,
+                                                    readOnly: true,
+                                                    style: TextStyle(
+                                                        color: Colors.black),
+                                                  ))),
                                         ],
                                       )),
                                     ),
@@ -334,7 +301,7 @@ class _ProjectsState extends State<Projects> {
                         },
                         contentPadding: EdgeInsets.all(16),
 
-                        //list tasks with their title and status
+                        //list tasks with their title and statusr
                         title: Text(
                           documentSnapshot['projectTitle'],
                           style: TextStyle(
@@ -342,12 +309,12 @@ class _ProjectsState extends State<Projects> {
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
-                          textAlign: TextAlign.left,
+                          textAlign: TextAlign.center,
                         ),
                         subtitle: Text(
-                          documentSnapshot['chairName'],
-                          textAlign: TextAlign.right,
-                          style: TextStyle(color: Colors.grey),
+                          documentSnapshot['content'],
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
                         ),
 
                         tileColor: Colors.black,
@@ -358,6 +325,7 @@ class _ProjectsState extends State<Projects> {
                           icon: Icon(Icons.delete),
                           color: Color.fromARGB(255, 248, 79, 79),
                           onPressed: () {
+                        
                             showDialog(
                                 context: context,
                                 builder: (context) {
@@ -423,35 +391,18 @@ class _ProjectsState extends State<Projects> {
                                     ),
                                     content: Column(children: [
                                       Container(
-                                        padding: EdgeInsets.all(16),
                                         child: TextField(
                                           controller: TextEditingController(
                                               text: documentSnapshot[
-                                                  'chairName']),
+                                                  'authorName']),
                                           autofocus: true,
                                           decoration: InputDecoration(
-                                              hintText: 'ChairPerson Name',
-                                              labelText: 'Chairperson',
-                                              border: OutlineInputBorder(),),
-                                          readOnly: true,
-                                        ),
-                                      ),
-                                       Container(
-                                        padding: EdgeInsets.all(16),
-                                        child: TextField(
-                                          controller: TextEditingController(
-                                              text: documentSnapshot[
-                                                  'orgName']),
-                                          autofocus: true,
-                                          decoration: InputDecoration(
-                                              hintText: 'Organization',
-                                             labelText: 'Organization',
-                                              border: OutlineInputBorder(),),
+                                              hintText: 'Author name',
+                                              border: InputBorder.none),
                                           readOnly: true,
                                         ),
                                       ),
                                       Container(
-                                        padding: EdgeInsets.all(16),
                                         child: TextField(
                                           controller: TextEditingController(
                                               text: documentSnapshot[
@@ -459,8 +410,7 @@ class _ProjectsState extends State<Projects> {
                                           autofocus: true,
                                           decoration: InputDecoration(
                                               hintText: 'Title',
-                                              labelText: 'Project Title',
-                                              border: OutlineInputBorder(),),
+                                              border: InputBorder.none),
                                           readOnly: true,
                                         ),
                                       ),
@@ -471,13 +421,13 @@ class _ProjectsState extends State<Projects> {
                                               text:
                                                   documentSnapshot['content']),
                                           decoration: InputDecoration(
-                                              labelText: 'Description',
+                                              labelText: 'Type',
                                               border: OutlineInputBorder(),
                                               prefixIcon: Icon(
                                                 Icons.edit,
                                                 color: Colors.black,
                                               )),
-                                          maxLines: 10,
+                                          maxLines: 15,
                                           onChanged: ((value) {
                                             content = value;
                                           }),
