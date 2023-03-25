@@ -52,14 +52,18 @@ class _ProjectsState extends State<Projects> {
   }
 
   //function to update the status of a task by clicking on the check box
-  updateProjects(itemId, content) {
+  updateProjects(itemId, content, projectTitle, orgName, chairName) {
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('users')
         .doc(widget.user!.uid)
         .collection('Projects')
         .doc(itemId);
-    documentReference
-        .update({'content': content}).whenComplete(() => print("Updated"));
+    documentReference.update({
+      'content': content,
+      'projectTitle': projectTitle,
+      'orgName': orgName,
+      'chairName': chairName
+    }).whenComplete(() => print("Updated"));
   }
 
   int _selectedIndex = 2;
@@ -435,7 +439,7 @@ class _ProjectsState extends State<Projects> {
                                             labelText: 'Chairperson',
                                             border: OutlineInputBorder(),
                                           ),
-                                           onChanged: ((value) {
+                                          onChanged: ((value) {
                                             chairName = value;
                                           }),
                                         ),
@@ -501,7 +505,8 @@ class _ProjectsState extends State<Projects> {
                                             setState(() {
                                               updateProjects(
                                                   documentSnapshot.reference.id,
-                                                  content);
+                                                  content,
+                                                  projectTitle,orgName,chairName);
                                             });
                                             Navigator.of(context).pop();
                                           },
