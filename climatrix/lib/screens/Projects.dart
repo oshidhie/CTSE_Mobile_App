@@ -40,7 +40,7 @@ class _ProjectsState extends State<Projects> {
     documentReference.add(Projects).whenComplete(() => print("input created"));
   }
 
-  //function to delete items from the todo list
+  //function to delete items from the list
   deletProjects(item) {
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('users')
@@ -319,7 +319,8 @@ class _ProjectsState extends State<Projects> {
                                                     'content']),
                                             decoration: InputDecoration(
                                                 border: InputBorder.none,
-                                                labelText: 'Project Description'),
+                                                labelText:
+                                                    'Project Description'),
                                             maxLines: 15,
                                             readOnly: true,
                                             style:
@@ -430,24 +431,30 @@ class _ProjectsState extends State<Projects> {
                                                   'chairName']),
                                           autofocus: true,
                                           decoration: InputDecoration(
-                                              hintText: 'ChairPerson Name',
-                                              labelText: 'Chairperson',
-                                              border: OutlineInputBorder(),),
-                                          readOnly: true,
+                                            hintText: 'ChairPerson Name',
+                                            labelText: 'Chairperson',
+                                            border: OutlineInputBorder(),
+                                          ),
+                                           onChanged: ((value) {
+                                            chairName = value;
+                                          }),
                                         ),
                                       ),
-                                       Container(
+                                      Container(
                                         padding: EdgeInsets.all(16),
                                         child: TextField(
                                           controller: TextEditingController(
-                                              text: documentSnapshot[
-                                                  'orgName']),
+                                              text:
+                                                  documentSnapshot['orgName']),
                                           autofocus: true,
                                           decoration: InputDecoration(
-                                              hintText: 'Organization',
-                                             labelText: 'Organization',
-                                              border: OutlineInputBorder(),),
-                                          readOnly: true,
+                                            hintText: 'Organization',
+                                            labelText: 'Organization',
+                                            border: OutlineInputBorder(),
+                                          ),
+                                          onChanged: ((value) {
+                                            orgName = value;
+                                          }),
                                         ),
                                       ),
                                       Container(
@@ -458,10 +465,13 @@ class _ProjectsState extends State<Projects> {
                                                   'projectTitle']),
                                           autofocus: true,
                                           decoration: InputDecoration(
-                                              hintText: 'Title',
-                                              labelText: 'Project Title',
-                                              border: OutlineInputBorder(),),
-                                          readOnly: true,
+                                            hintText: 'Title',
+                                            labelText: 'Project Title',
+                                            border: OutlineInputBorder(),
+                                          ),
+                                          onChanged: ((value) {
+                                            projectTitle = value;
+                                          }),
                                         ),
                                       ),
                                       Container(
