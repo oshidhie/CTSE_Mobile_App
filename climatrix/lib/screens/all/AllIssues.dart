@@ -153,31 +153,6 @@ class _AllIssuesState extends State<AllIssues> {
                                               readOnly: true,
                                             ),
                                           ),
-                                          // Container(
-                                          //     child: Align(
-                                          //         alignment: Alignment.topLeft,
-                                          //         child: Text(
-                                          //           documentSnapshot[
-                                          //               'issueType'],
-                                          //           style: TextStyle(
-                                          //               color: Colors.black,
-                                          //               fontSize: 30,
-                                          //               fontWeight:
-                                          //                   FontWeight.bold),
-                                          //         ))),
-                                          // Container(
-                                          //     child: Align(
-                                          //         alignment: Alignment.topLeft,
-                                          //         child: Text(
-                                          //           documentSnapshot[
-                                          //               'issueName'],
-                                          //           style: TextStyle(
-                                          //               color: Color.fromARGB(
-                                          //                   255, 83, 76, 76),
-                                          //               fontSize: 15,
-                                          //               fontWeight:
-                                          //                   FontWeight.w300),
-                                          //         ))),
                                           Container(
                                             padding: EdgeInsets.all(20),
                                             child: TextField(
@@ -193,29 +168,14 @@ class _AllIssuesState extends State<AllIssues> {
                                           ),
                                         ],
                                       )),
-
-                                      // child: Column(children: [
-                                      //    Align(alignment: Alignment.topLeft,child:Column(children: [
-                                      //     Text(documentSnapshot['issueType'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),),
-                                      //     Text(documentSnapshot['issueName'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),),
-                                      //     Expanded(child: Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))
-
-                                      //    ]),
-                                      //    ),
-
-                                      // ],)
                                     ),
-
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['issueType'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),))),
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['issueName'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),))),
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))),
                                   ]),
                                 );
                               });
                         },
                         contentPadding: EdgeInsets.all(16),
 
-                        //list tasks with their title and status
+                        //list tasks with their type and location
                         title: Text(
                           documentSnapshot['issueType'],
                           style: TextStyle(
