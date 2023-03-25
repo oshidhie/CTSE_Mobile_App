@@ -70,9 +70,8 @@ class _AllIssuesState extends State<AllIssues> {
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
-              .collectionGroup('AllIssues')
-              .snapshots(),
+          stream:
+              FirebaseFirestore.instance.collectionGroup('Issues').snapshots(),
           builder: (context, snapshot) {
             return ListView.builder(
                 shrinkWrap: true,
