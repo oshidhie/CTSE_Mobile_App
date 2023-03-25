@@ -99,10 +99,17 @@ class _AllProjectsState extends State<AllProjects> {
                                         children: [
                                           Container(
                                               child: Align(
-                                                  alignment: Alignment.topLeft,
-                                                  child: Text(
-                                                    documentSnapshot[
-                                                        'projectTitle'],
+                                                  alignment: Alignment.center,
+                                                  child: TextField(
+                                                    controller:
+                                                        TextEditingController(
+                                                      text: documentSnapshot[
+                                                          'projectTitle'],
+                                                    ),
+                                                    decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                    ),
+                                                    readOnly: true,
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 30,
@@ -112,9 +119,40 @@ class _AllProjectsState extends State<AllProjects> {
                                           Container(
                                               child: Align(
                                                   alignment: Alignment.topLeft,
-                                                  child: Text(
-                                                    documentSnapshot[
-                                                        'authorName'],
+                                                  child: TextField(
+                                                    controller:
+                                                        TextEditingController(
+                                                      text: documentSnapshot[
+                                                          'chairName'],
+                                                    ),
+                                                    decoration: InputDecoration(
+                                                        border:
+                                                            InputBorder.none,
+                                                        labelText:
+                                                            'Chairperson'),
+                                                    readOnly: true,
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                            255, 83, 76, 76),
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w300),
+                                                  ))),
+                                          Container(
+                                              child: Align(
+                                                  alignment: Alignment.topLeft,
+                                                  child: TextField(
+                                                    controller:
+                                                        TextEditingController(
+                                                      text: documentSnapshot[
+                                                          'orgName'],
+                                                    ),
+                                                    decoration: InputDecoration(
+                                                        border:
+                                                            InputBorder.none,
+                                                        labelText:
+                                                            'Organization'),
+                                                    readOnly: true,
                                                     style: TextStyle(
                                                         color: Color.fromARGB(
                                                             255, 83, 76, 76),
@@ -123,59 +161,29 @@ class _AllProjectsState extends State<AllProjects> {
                                                             FontWeight.w300),
                                                   ))),
                                           Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                    gradient: LinearGradient(
-                                                        colors: [
-                                                          Colors.lightGreen,
-                                                          Colors.cyan
-                                                        ]),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                  ),
-                                                  padding: EdgeInsets.all(20),
-                                                  alignment: Alignment.topLeft,
-                                                  height: 600,
-                                                  child: TextField(
-                                                    controller:
-                                                        TextEditingController(
-                                                            text:
-                                                                documentSnapshot[
-                                                                    'content']),
-                                                    decoration: InputDecoration(
-                                                        border:
-                                                            InputBorder.none),
-                                                    maxLines: 50,
-                                                    readOnly: true,
-                                                    style: TextStyle(
-                                                        color: Colors.black),
-                                                  ))),
+                                              child: TextField(
+                                            controller: TextEditingController(
+                                                text: documentSnapshot[
+                                                    'content']),
+                                            decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                labelText:
+                                                    'Project Description'),
+                                            maxLines: 15,
+                                            readOnly: true,
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          )),
                                         ],
                                       )),
-
-                                      // child: Column(children: [
-                                      //    Align(alignment: Alignment.topLeft,child:Column(children: [
-                                      //     Text(documentSnapshot['projectTitle'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),),
-                                      //     Text(documentSnapshot['authorName'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),),
-                                      //     Expanded(child: Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))
-
-                                      //    ]),
-                                      //    ),
-
-                                      // ],)
                                     ),
-
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['projectTitle'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),))),
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['authorName'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),))),
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))),
                                   ]),
                                 );
                               });
                         },
                         contentPadding: EdgeInsets.all(16),
 
-                        //list tasks with their title and statusr
+                        //list tasks with their title and status
                         title: Text(
                           documentSnapshot['projectTitle'],
                           style: TextStyle(
@@ -183,12 +191,12 @@ class _AllProjectsState extends State<AllProjects> {
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.left,
                         ),
                         subtitle: Text(
-                          documentSnapshot['content'],
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white),
+                          documentSnapshot['orgName'],
+                          textAlign: TextAlign.right,
+                          style: TextStyle(color: Colors.grey),
                         ),
 
                         tileColor: Colors.black,
