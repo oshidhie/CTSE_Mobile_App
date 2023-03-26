@@ -40,7 +40,7 @@ class _IssuesState extends State<Issues> {
     documentReference.add(Issues).whenComplete(() => print("input created"));
   }
 
-  //function to delete items from the todo list
+  //function to delete items from the issues list
   deletIssues(item) {
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('users')

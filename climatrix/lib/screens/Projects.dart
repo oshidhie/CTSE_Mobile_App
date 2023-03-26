@@ -40,7 +40,7 @@ class _ProjectsState extends State<Projects> {
     documentReference.add(Projects).whenComplete(() => print("input created"));
   }
 
-  //function to delete items from the list
+  //function to delete items from the report list
   deletProjects(item) {
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('users')

@@ -28,8 +28,6 @@ class _AllReportsState extends State<AllReports> {
   }
 
   allnavigation() {
-    //  Navigator.push(context,
-    //  MaterialPageRoute(builder: (context) => HomePage(widget.user)));
   }
   mynavigation() {
     Navigator.push(
@@ -54,14 +52,14 @@ class _AllReportsState extends State<AllReports> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        leading: Icon(
+        leading: const Icon(
           Icons.dashboard_customize,
         ),
         centerTitle: true,
         title: const Text('All Reports'),
         actions: [
           IconButton(
-              icon: Icon(Icons.logout),
+              icon: const Icon(Icons.logout),
               onPressed: () {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => LoginPage()));
@@ -79,7 +77,7 @@ class _AllReportsState extends State<AllReports> {
                   DocumentSnapshot documentSnapshot =
                       snapshot.data!.docs[index];
                   return Card(
-                      margin: EdgeInsets.all(16),
+                      margin: const EdgeInsets.all(16),
                       key: Key(index.toString()),
                       child: ListTile(
                         onTap: () {
@@ -111,7 +109,7 @@ class _AllReportsState extends State<AllReports> {
                                                         BorderRadius.circular(
                                                             8),
                                                   ),
-                                                  padding: EdgeInsets.all(20),
+                                                  padding: const EdgeInsets.all(20),
                                                   alignment: Alignment.topLeft,
                                                   //height: 20,
                                                   child: TextField(
@@ -120,14 +118,14 @@ class _AllReportsState extends State<AllReports> {
                                                             text:
                                                                 documentSnapshot[
                                                                     'location']),
-                                                    decoration: InputDecoration(
+                                                    decoration: const InputDecoration(
                                                         labelText:
                                                             'Location of Incident',
                                                         border:
                                                             InputBorder.none),
                                                     maxLines: 1,
                                                     readOnly: true,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.black),
                                                   ))),
                                           Expanded(
@@ -137,7 +135,7 @@ class _AllReportsState extends State<AllReports> {
                                                         BorderRadius.circular(
                                                             8),
                                                   ),
-                                                  padding: EdgeInsets.all(20),
+                                                  padding: const EdgeInsets.all(20),
                                                   alignment: Alignment.topLeft,
                                                   // height: 50,
                                                   child: TextField(
@@ -145,7 +143,7 @@ class _AllReportsState extends State<AllReports> {
                                                         TextEditingController(
                                                             text: documentSnapshot[
                                                                 'vehicleNo']),
-                                                    decoration: InputDecoration(
+                                                    decoration: const InputDecoration(
                                                         labelText:
                                                             'Vehicle No Reported',
                                                         border:

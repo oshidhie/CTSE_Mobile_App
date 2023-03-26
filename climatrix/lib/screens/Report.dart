@@ -38,7 +38,7 @@ class _ReportsState extends State<Reports> {
     documentReference.add(Reports).whenComplete(() => print("input created"));
   }
 
-  //function to delete items from the todo list
+  //function to delete items from the report list
   deletReports(item) {
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('users')
@@ -68,13 +68,11 @@ class _ReportsState extends State<Reports> {
   }
 
   allnavigation() {
-     Navigator.push(context,
-     MaterialPageRoute(builder: (context) => AllReports(widget.user)));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => AllReports(widget.user)));
   }
-  mynavigation() {
-    //  Navigator.push(context,
-    //  MaterialPageRoute(builder: (context) => HomePage(widget.user)));
-  }
+
+  mynavigation() {}
   addnavigation() {
     showDialog(
         context: context,
@@ -84,7 +82,6 @@ class _ReportsState extends State<Reports> {
               borderRadius: BorderRadius.circular(8),
             ),
             shadowColor: Colors.purple,
-
             content: Column(
               children: <Widget>[
                 Container(
@@ -102,7 +99,7 @@ class _ReportsState extends State<Reports> {
                 Container(
                   padding: const EdgeInsets.all(16),
                   child: TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Vehicle No = AKE-1234 / 12-1234',
                       border: OutlineInputBorder(),
                     ),
@@ -112,9 +109,9 @@ class _ReportsState extends State<Reports> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Location of Incident',
                       border: OutlineInputBorder(),
                     ),
@@ -124,9 +121,9 @@ class _ReportsState extends State<Reports> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Description',
                       border: OutlineInputBorder(),
                     ),
@@ -136,18 +133,8 @@ class _ReportsState extends State<Reports> {
                     }),
                   ),
                 ),
-                // Container(
-                //   child: TextField(onChanged: (value) {
-                //     cstatus=value;
-                //   },
-                //     decoration: InputDecoration(labelText: 'Add ToDo'),),
-                // )
               ],
             ),
-            // content: TextField(onChanged: (value) {
-            //   input=value;
-            // },),
-            // submit button
             actions: [
               Align(
                   alignment: Alignment.topCenter,
@@ -192,14 +179,14 @@ class _ReportsState extends State<Reports> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        leading: Icon(
+        leading: const Icon(
           Icons.dashboard_customize,
         ),
         centerTitle: true,
         title: const Text('My Reports'),
         actions: [
           IconButton(
-              icon: Icon(Icons.logout),
+              icon: const Icon(Icons.logout),
               onPressed: () {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => LoginPage()));
@@ -220,7 +207,7 @@ class _ReportsState extends State<Reports> {
                   DocumentSnapshot documentSnapshot =
                       snapshot.data!.docs[index];
                   return Card(
-                      margin: EdgeInsets.all(16),
+                      margin: const EdgeInsets.all(16),
                       key: Key(index.toString()),
                       child: ListTile(
                         onTap: () {
@@ -252,26 +239,26 @@ class _ReportsState extends State<Reports> {
                                                         BorderRadius.circular(
                                                             8),
                                                   ),
-                                                  padding: EdgeInsets.all(20),
+                                                  padding:
+                                                      const EdgeInsets.all(20),
                                                   alignment: Alignment.topLeft,
-                                                  //height: 20,
                                                   child: TextField(
                                                     controller:
                                                         TextEditingController(
                                                             text:
                                                                 documentSnapshot[
                                                                     'location']),
-                                                    decoration: InputDecoration(
-                                                        labelText:
-                                                            'Location of Incident',
-                                                        border:
-                                                            InputBorder.none),
+                                                    decoration:
+                                                        const InputDecoration(
+                                                            labelText:
+                                                                'Location of Incident',
+                                                            border: InputBorder
+                                                                .none),
                                                     maxLines: 1,
                                                     readOnly: true,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.black),
                                                   ))),
-
                                           Expanded(
                                               child: Container(
                                                   decoration: BoxDecoration(
@@ -279,7 +266,8 @@ class _ReportsState extends State<Reports> {
                                                         BorderRadius.circular(
                                                             8),
                                                   ),
-                                                  padding: EdgeInsets.all(20),
+                                                  padding:
+                                                      const EdgeInsets.all(20),
                                                   alignment: Alignment.topLeft,
                                                   // height: 50,
                                                   child: TextField(
@@ -287,42 +275,17 @@ class _ReportsState extends State<Reports> {
                                                         TextEditingController(
                                                             text: documentSnapshot[
                                                                 'vehicleNo']),
-                                                    decoration: InputDecoration(
-                                                        labelText:
-                                                            'Vehicle No Reported',
-                                                        border:
-                                                            InputBorder.none),
+                                                    decoration:
+                                                        const InputDecoration(
+                                                            labelText:
+                                                                'Vehicle No Reported',
+                                                            border: InputBorder
+                                                                .none),
                                                     maxLines: 1,
                                                     readOnly: true,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.black),
                                                   ))),
-
-                                          // Container(
-                                          //     child: Align(
-                                          //         alignment: Alignment.topLeft,
-                                          //         child: Text(
-                                          //           documentSnapshot[
-                                          //               'location'],
-                                          //           style: TextStyle(
-                                          //               color: Colors.black,
-                                          //               fontSize: 30,
-                                          //               fontWeight:
-                                          //                   FontWeight.bold),
-                                          //         ))),
-                                          // Container(
-                                          //     child: Align(
-                                          //         alignment: Alignment.topLeft,
-                                          //         child: Text(
-                                          //           documentSnapshot[
-                                          //               'vehicleNo'],
-                                          //           style: TextStyle(
-                                          //               color: Color.fromARGB(
-                                          //                   255, 83, 76, 76),
-                                          //               fontSize: 15,
-                                          //               fontWeight:
-                                          //                   FontWeight.w300),
-                                          //         ))),
                                           Expanded(
                                               child: Container(
                                                   decoration: BoxDecoration(
@@ -332,51 +295,36 @@ class _ReportsState extends State<Reports> {
                                                   ),
                                                   padding: EdgeInsets.all(20),
                                                   alignment: Alignment.topLeft,
-                                                  //height: 20,
                                                   child: TextField(
                                                     controller:
                                                         TextEditingController(
                                                             text:
                                                                 documentSnapshot[
                                                                     'content']),
-                                                    decoration: InputDecoration(
-                                                        labelText:
-                                                            'Description of Incident',
-                                                        border:
-                                                            InputBorder.none),
+                                                    decoration:
+                                                        const InputDecoration(
+                                                            labelText:
+                                                                'Description of Incident',
+                                                            border: InputBorder
+                                                                .none),
                                                     maxLines: 5,
                                                     readOnly: true,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.black),
                                                   ))),
                                         ],
                                       )),
-
-                                      // child: Column(children: [
-                                      //    Align(alignment: Alignment.topLeft,child:Column(children: [
-                                      //     Text(documentSnapshot['location'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),),
-                                      //     Text(documentSnapshot['vehicleNo'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),),
-                                      //     Expanded(child: Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))
-
-                                      //    ]),
-                                      //    ),
-
-                                      // ],)
-                                    ),
-
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['location'],style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),))),
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['vehicleNo'],style: TextStyle(color: Color.fromARGB(255, 83, 76, 76),fontSize: 15,fontWeight: FontWeight.w300),))),
-                                    // Container(child: Align(alignment: Alignment.topLeft,child:Text(documentSnapshot['content'],style: TextStyle(color: Colors.black),))),
+                                    )
                                   ]),
                                 );
                               });
                         },
-                        contentPadding: EdgeInsets.all(16),
+                        contentPadding: const EdgeInsets.all(16),
 
                         //list tasks with their title and status
                         title: Text(
                           documentSnapshot['location'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -386,7 +334,7 @@ class _ReportsState extends State<Reports> {
                         subtitle: Text(
                           documentSnapshot['content'],
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
 
                         tileColor: Colors.black,
@@ -394,13 +342,9 @@ class _ReportsState extends State<Reports> {
                             borderRadius: BorderRadius.circular(16)),
 
                         trailing: IconButton(
-                          icon: Icon(Icons.delete),
-                          color: Color.fromARGB(255, 179, 231, 121),
+                          icon: const Icon(Icons.delete),
+                          color: const Color.fromARGB(255, 179, 231, 121),
                           onPressed: () {
-                            // setState(() {
-                            //   //delete an item
-                            //   deletReports(documentSnapshot.reference.id);
-                            // });
                             showDialog(
                                 context: context,
                                 builder: (context) {
@@ -415,34 +359,30 @@ class _ReportsState extends State<Reports> {
                                       textAlign: TextAlign.center,
                                     ),
                                     content: Column(children: [
-                                      Container(
-                                        child: const Text(
-                                          "Are you sure you want to delete this incident?",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w100,
-                                          ),
-                                          textAlign: TextAlign.justify,
+                                      const Text(
+                                        "Are you sure you want to delete this incident?",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w100,
                                         ),
+                                        textAlign: TextAlign.justify,
                                       ),
                                       SizedBox(
                                           height: 40,
                                           width: 80,
-                                          child: Container(
-                                            child: ElevatedButton(
-                                              child: const Text('Yes'),
-                                              style: ButtonStyle(
-                                                  backgroundColor:
-                                                      MaterialStatePropertyAll(
-                                                          Colors.black),
-                                                  alignment: Alignment.center),
-                                              onPressed: () {
-                                                setState(() {
-                                                  deletReports(documentSnapshot
-                                                      .reference.id);
-                                                });
-                                                Navigator.of(context).pop();
-                                              },
-                                            ),
+                                          child: ElevatedButton(
+                                            style: const ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStatePropertyAll(
+                                                        Colors.black),
+                                                alignment: Alignment.center),
+                                            onPressed: () {
+                                              setState(() {
+                                                deletReports(documentSnapshot
+                                                    .reference.id);
+                                              });
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: const Text('Yes'),
                                           ))
                                     ]),
                                   );
@@ -451,7 +391,7 @@ class _ReportsState extends State<Reports> {
                         ),
                         //check box to update the status
                         leading: IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.border_color,
                             color: Color.fromARGB(255, 179, 231, 121),
                           ),
@@ -474,12 +414,12 @@ class _ReportsState extends State<Reports> {
                                         ),
                                       ),
                                       Container(
-                                        padding: EdgeInsets.all(16),
+                                        padding: const EdgeInsets.all(16),
                                         child: TextField(
                                           controller: TextEditingController(
                                               text: documentSnapshot[
                                                   'vehicleNo']),
-                                          decoration: InputDecoration(
+                                          decoration: const InputDecoration(
                                             labelText: 'Vehicle Number',
                                           ),
                                           readOnly: true,
@@ -489,12 +429,12 @@ class _ReportsState extends State<Reports> {
                                         ),
                                       ),
                                       Container(
-                                        padding: EdgeInsets.all(16),
+                                        padding: const EdgeInsets.all(16),
                                         child: TextField(
                                           controller: TextEditingController(
                                               text:
                                                   documentSnapshot['location']),
-                                          decoration: InputDecoration(
+                                          decoration: const InputDecoration(
                                               labelText: 'Update Location',
                                               border: OutlineInputBorder(),
                                               prefixIcon: Icon(
@@ -508,12 +448,12 @@ class _ReportsState extends State<Reports> {
                                         ),
                                       ),
                                       Container(
-                                        padding: EdgeInsets.all(16),
+                                        padding: const EdgeInsets.all(16),
                                         child: TextField(
                                           controller: TextEditingController(
                                               text:
                                                   documentSnapshot['content']),
-                                          decoration: InputDecoration(
+                                          decoration: const InputDecoration(
                                               labelText: 'Update Description',
                                               border: OutlineInputBorder(),
                                               prefixIcon: Icon(
@@ -526,46 +466,6 @@ class _ReportsState extends State<Reports> {
                                           }),
                                         ),
                                       ),
-                                      // Container(
-                                      //   child: TextField(
-                                      //     controller: TextEditingController(
-                                      //         text: documentSnapshot[
-                                      //             'vehicleNo']),
-                                      //     autofocus: true,
-                                      //     decoration: InputDecoration(
-                                      //         hintText: 'Vehicle No',
-                                      //         border: InputBorder.none),
-                                      //     readOnly: true,
-                                      //   ),
-                                      // ),
-                                      // Container(
-                                      //   child: TextField(
-                                      //     controller: TextEditingController(
-                                      //         text:
-                                      //             documentSnapshot['location']),
-                                      //     autofocus: true,
-                                      //     decoration: InputDecoration(
-                                      //         hintText: 'Title',
-                                      //         border: InputBorder.none),
-                                      //     readOnly: true,
-                                      //   ),
-                                      // ),
-                                      // Container(
-                                      //   padding: EdgeInsets.all(16),
-                                      //   child: TextField(
-                                      //     controller: TextEditingController(
-                                      //         text:
-                                      //             documentSnapshot['content']),
-                                      //     decoration: InputDecoration(
-                                      //       labelText: 'Type',
-                                      //       border: OutlineInputBorder(),
-                                      //     ),
-                                      //     maxLines: 15,
-                                      //     onChanged: ((value) {
-                                      //       content = value;
-                                      //     }),
-                                      //   ),
-                                      // ),
                                     ]),
                                     actions: [
                                       Align(
@@ -607,22 +507,18 @@ class _ReportsState extends State<Reports> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-            //  backgroundColor: Colors.grey,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'All Reports',
-            // backgroundColor: Colors.grey,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'My Reports',
-            // backgroundColor: Colors.grey,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
             label: 'Add Report',
-            //  backgroundColor: Colors.grey,
           ),
         ],
         currentIndex: _selectedIndex,
